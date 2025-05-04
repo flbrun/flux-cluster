@@ -4,6 +4,6 @@ resources:
   - cert-manager
   - flux/flux-system
   #- gateways
-  #- istio
+  - istio
   - paths
-  #- redis
+  - redis
