@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager
   - flux/flux-system
-  #- gateways
+  - gateways
   - istio
   - paths
   - redis
