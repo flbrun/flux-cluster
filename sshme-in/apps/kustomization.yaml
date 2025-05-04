@@ -5,6 +5,5 @@ resources:
   - keycloak
   - nextcloud
   #- coder
-  #- outline
-  - outline2
-  - headlamp
+  - outline
+  #- headlamp

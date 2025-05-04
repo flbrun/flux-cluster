@@ -14,14 +14,20 @@ spec:
         namespace: flux-system
   values:
     url: "https://outline.sshme.in"
-    postgresql:
-      enabled: true
-      auth:
-        username: "outline"
-        password: "outline"
-        database: outline
+    externalPostgresql:
+      host: "10.10.10.3"
+      username: "outline_editor"
+      existingSecret: "postgres-outline-password"
     redis:
       enabled: true
+    fileStorage:
+      mode: "s3"
+      
+      s3:
+        existingSecret: "minio-outline"
+        bucket: "outline"
+        bucketUrl: "https://storage.sshme.in:9000"
+
     extraEnvVars:
       OIDC_CLIENT_ID: "outline"
       OIDC_AUTH_URI: "https://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/auth"
@@ -45,5 +51,5 @@ spec:
                   name: OIDC_CLIENT_SECRET
                   valueFrom:
                     secretKeyRef:
-                      name: sshme-in-keycloak-outline
+                      name: keycloak-outline
                       key: OIDC_CLIENT_SECRET
