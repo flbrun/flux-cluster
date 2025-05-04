@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: node-agent
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: cni
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+        namespace: flux-system
+  values:
+    global:
+      profile: ambient
+      platform: k3s
+    cniBinDir: /var/lib/rancher/k3s/data/current/bin/
+    cniConfDir: /var/lib/rancher/k3s/agent/etc/cni/net.d
