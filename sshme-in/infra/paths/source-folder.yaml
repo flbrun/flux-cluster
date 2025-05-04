@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: ../sshmein/source
+  path: ./sshme-in/source
   prune: true
   sourceRef:
     kind: GitRepository
