@@ -10,3 +10,5 @@ resources:
   - community-charts.yaml
   - headlamp.yaml
   - external-secrets.yaml
+  - prometheus-community.yaml
+  
