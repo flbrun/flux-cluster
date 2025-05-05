@@ -26,3 +26,8 @@ spec:
         value: "false"
       - name: KC_PROXY_HEADERS
         value: "xforwarded"
+    metrics:
+      enabled: true
+    serviceMonitor:
+      enabled: true
+      interval: 30s

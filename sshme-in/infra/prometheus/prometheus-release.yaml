@@ -12,3 +12,10 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
+  values:
+    serverFiles:
+      prometheus.yml:
+        scrape_configs:
+          - job_name: 'keycloak'
+            static_configs:
+              - targets: ['keycloak.apps.svc.cluster.local:8080']
