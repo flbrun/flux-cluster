@@ -18,12 +18,12 @@ spec:
       host: "10.10.10.3"
       username: "outline_editor"
       existingSecret: "postgres-outline-password"
-    redis:
-      enabled: true
-    #externalRedis:
-    #  host: "redis-master.redis.svc.cluster.local"
-    #  port: 6379
-    #  existingSecret: "redis-secret"
+    #redis:
+    #  enabled: true
+    externalRedis:
+      host: "redis-master.redis.svc.cluster.local"
+      port: 6379
+      existingSecret: "redis-secret"
     fileStorage:
       mode: "s3"
       
