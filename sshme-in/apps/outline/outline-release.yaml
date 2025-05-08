@@ -14,6 +14,11 @@ spec:
         namespace: flux-system
   values:
     url: "https://outline.sshme.in"
+    integrations:
+      openAI:
+        enabled: true
+        url: "https://tflow-dynachat.openai.azure.com"
+        apiKey: "5hu9IHM1AhbTsfVGLu2CZsFpNCFT7QDrUWlUmybGJek09lNW7Gk1JQQJ99ALACfhMk5XJ3w3AAABACOG6cxQ"
     externalPostgresql:
       host: "10.10.10.3"
       username: "outline_editor"
