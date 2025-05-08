@@ -12,6 +12,10 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
+    auth:
+      enabled: true
+      existingSecret: redis-secret
+      passwordKey: redis-password
     master:
       persistence:
         enabled: false
