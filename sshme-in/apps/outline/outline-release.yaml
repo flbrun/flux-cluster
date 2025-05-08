@@ -20,7 +20,6 @@ spec:
       existingSecret: "postgres-outline-password"
     externalRedis:
       host: "redis-master.redis.svc.cluster.local"
-      username: "default"
       port: 6379
       existingSecret: "redis-secret"
     fileStorage:
