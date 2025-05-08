@@ -6,7 +6,6 @@ resources:
   - nextcloud.yaml
   - jetstack.yaml
   - bitnami.yaml
-  - coder.yaml
   - community-charts.yaml
   - headlamp.yaml
   - external-secrets.yaml
