@@ -19,4 +19,4 @@ spec:
           - job_name: 'keycloak'
             metrics_path: '/metrics'
             static_configs:
-              - targets: ['keycloak.apps.svc.cluster.local:8080']
+              - targets: ['keycloak.apps.svc.cluster.local:9000']
