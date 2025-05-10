@@ -10,5 +10,4 @@ resources:
   - headlamp.yaml
   - external-secrets.yaml
   - prometheus-community.yaml
-  - eclipse-che.yaml
   
