@@ -14,7 +14,7 @@ spec:
         namespace: flux-system
   values:
     image:
-      tag: "0.83.0"
+      tag: "0.84.0"
     url: "https://outline.sshme.in"
     externalPostgresql:
       host: "10.10.10.3"
