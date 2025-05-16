@@ -52,14 +52,15 @@ spec:
         volumeMounts:
           - mountPath: /home/headlamp/.config/Headlamp/kubeconfigs
             name: kubeconfig
-    
-    
+
+
     volumeMounts:
       - mountPath: /home/headlamp/.config/Headlamp/kubeconfigs/config
         name: kubeconfig
         readOnly: true
         subPath: config
-    
+
     volumes:
       - name: kubeconfig
         emptyDir: {}
+
