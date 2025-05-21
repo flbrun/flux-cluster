@@ -1,15 +1,10 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: iframely
-  namespace: flux-system
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: iframely
-      sourceRef:
-        kind: OCIRepository
-        name: iframely
-        namespace: flux-system
-      version: "2.3.2"
+  chartRef:
+    kind: OCIRepository
+    name: iframely
+    namespace: flux-system
