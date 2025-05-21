@@ -6,4 +6,4 @@ spec:
   interval: 5m0s
   url: oci://registry.gitlab.com/xrow-public/helm-iframely/charts/iframely
   ref:
-    tag: latest
+    tag: 2.3.2
