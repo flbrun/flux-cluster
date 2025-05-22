@@ -11,5 +11,5 @@ spec:
   values:
     image:
       registry: ""
-      repository: r/qyg2297248353/iframely
+      repository: qyg2297248353/iframely
       tag: latest
