@@ -10,6 +10,6 @@ spec:
     namespace: flux-system
   values:
     image:
-      registry: hub.docker.com
+      registry: ""
       repository: qyg2297248353/iframely
       tag: latest
