@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iframely-config
+  namespace: default
+data:
+  config.local.js: |
+    module.exports = {
+      fix_shorts_in_eu: false
+    };
