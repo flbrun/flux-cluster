@@ -10,6 +10,5 @@ spec:
     kind: GitRepository
     name: system-upgrade-controller
   path: ./
-  prune: true
   targetNamespace: system-upgrade
   timeout: 2m
