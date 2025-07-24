@@ -4,3 +4,4 @@ namespace: system-upgrade
 resources:
   - git-repo.yaml
   - kustomize-ref.yaml
+  - plan.yaml
