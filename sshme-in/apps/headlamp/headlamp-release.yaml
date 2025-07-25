@@ -13,7 +13,8 @@ spec:
         namespace: flux-system
   values:
      config:
-      oidc:
+       inCluster: true
+       oidc:
         secret:
           create: false
         externalSecret:
