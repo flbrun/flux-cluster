@@ -12,21 +12,6 @@ spec:
         name: headlamp
         namespace: flux-system
   values:
-    extraManifests:
-      - |
-        apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: headlamp
-          namespace: apps
-        spec:
-          template:
-            spec:
-              containers:
-                - name: headlamp
-                  env:
-                    - name: NODE_ENV
-                      value: development
      config:
       oidc:
         secret:
