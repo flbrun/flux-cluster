@@ -19,6 +19,9 @@ spec:
         externalSecret:
           enabled: true
           name: "headlamp-oicd-secret"
+    env:
+      - name: NODE_ENV
+        value: development
   
      
 
