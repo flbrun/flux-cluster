@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - headlamp-release.yaml
   - route.yaml
+  - cluster-access.yaml
