@@ -37,6 +37,9 @@ spec:
               weatherapi: weatherapiapikey
           widgets.yaml: |
             ---
+            - search:
+              provider: duckduckgo
+              target: _blank
 
           services.yaml: |
             ---
@@ -50,5 +53,9 @@ spec:
                     description: Homepage is 😎
           bookmarks.yaml: |
             ---
+            - Developer:
+              - Github:
+                  - abbr: GH
+                    href: https://github.com/
 
     forceConfigFromValues: false
