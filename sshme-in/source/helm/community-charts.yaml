@@ -3,5 +3,5 @@ kind: HelmRepository
 metadata:
   name: community-charts
 spec:
-  interval: 5m
+  interval: 10m
   url: https://community-charts.github.io/helm-charts

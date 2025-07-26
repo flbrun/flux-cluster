@@ -3,5 +3,5 @@ kind: HelmRepository
 metadata:
   name: istio
 spec:
-  interval: 5m
+  interval: 10m
   url: https://istio-release.storage.googleapis.com/charts
