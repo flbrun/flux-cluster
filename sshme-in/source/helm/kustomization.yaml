@@ -5,7 +5,6 @@ resources:
   - istio.yaml
   - nextcloud.yaml
   - jetstack.yaml
-  - bitnami.yaml
   - community-charts.yaml
   - headlamp.yaml
   - external-secrets.yaml
