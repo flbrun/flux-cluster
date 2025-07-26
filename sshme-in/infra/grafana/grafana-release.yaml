@@ -14,17 +14,18 @@ spec:
         name: grafana
         namespace: flux-system
   values:
-    grafana.ini: {}
-    envFromSecret: null 
-    env:
-      - name: GF_PATHS_CONFIG
-        value: /etc/grafana/custom/grafana.ini
-    extraSecretMounts:
-      - name: grafana-oauth-ini
-        mountPath: /etc/grafana/custom/
-        subPath: grafana.ini
-        secretName: grafana-oauth-ini
-        readOnly: true
+    envFromSecret: grafana-oidc-secret
+    grafana.ini:
+      auth.generic_oauth:
+        enabled: true
+        name: "OIDC"
+        allow_sign_up: true
+        client_id: grafana
+        client_secret: ""
+        auth_url: https://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/auth
+        token_url: https://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/token
+        api_url: ttps://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/userinf
+        scopes: "openid email profile"
     datasources:
       datasources.yaml:
         apiVersion: 1
