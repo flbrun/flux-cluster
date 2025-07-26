@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: grafana
+  namespace: monitoring
 spec:
   interval: 10m
   chart:
@@ -13,13 +14,16 @@ spec:
         name: grafana
         namespace: flux-system
   values:
-    grafana.ini: {}
+    grafana.ini: {}  # disable default config to avoid conflicts
+    env:
+      - name: GF_PATHS_CONFIG
+        value: /etc/grafana/custom/grafana.ini
     extraSecretMounts:
-    - name: grafana-oauth-ini
-      mountPath: /etc/grafana/grafana.ini
-      subPath: grafana.ini
-      secretName: grafana-oauth-ini
-      readOnly: true
+      - name: grafana-oauth-ini
+        mountPath: /etc/grafana/custom/
+        subPath: grafana.ini
+        secretName: grafana-oauth-ini
+        readOnly: true
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -29,4 +33,5 @@ spec:
             access: proxy
             url: http://prometheus-server
             isDefault: true
+
     
