@@ -10,4 +10,5 @@ resources:
   - headlamp.yaml
   - external-secrets.yaml
   - prometheus-community.yaml
+  - grafana.yaml
   
