@@ -25,6 +25,9 @@ spec:
         token_url: https://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/token
         api_url: ttps://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/userinfo
         scopes: "openid email profile"
+        auto_login: true         
+      auth:
+        disable_login_form: true
     datasources:
       datasources.yaml:
         apiVersion: 1
