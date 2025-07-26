@@ -6,7 +6,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: truecharts-homepage
+      chart: homepage
       sourceRef:
         kind: HelmRepository
         name: truecharts-homepage
