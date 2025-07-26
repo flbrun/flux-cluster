@@ -23,7 +23,7 @@ spec:
         client_id: grafana
         auth_url: https://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/auth
         token_url: https://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/token
-        api_url: ttps://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/userinf
+        api_url: ttps://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/userinfo
         scopes: "openid email profile"
     datasources:
       datasources.yaml:
