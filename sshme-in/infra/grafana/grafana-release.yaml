@@ -14,7 +14,8 @@ spec:
         name: grafana
         namespace: flux-system
   values:
-    grafana.ini: {}  # disable default config to avoid conflicts
+    grafana.ini: {}
+    envFromSecret: null 
     env:
       - name: GF_PATHS_CONFIG
         value: /etc/grafana/custom/grafana.ini
