@@ -16,6 +16,8 @@ spec:
   values:
     envFromSecret: grafana-oidc-secret
     grafana.ini:
+      server:
+        root_url: https://grafana.sshme.in/
       auth.generic_oauth:
         enabled: true
         name: "OIDC"
