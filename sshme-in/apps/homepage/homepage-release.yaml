@@ -11,3 +11,11 @@ spec:
         kind: HelmRepository
         name: truecharts
         namespace: flux-system
+  values:
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
