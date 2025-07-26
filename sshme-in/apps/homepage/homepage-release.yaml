@@ -9,5 +9,5 @@ spec:
       chart: homepage
       sourceRef:
         kind: HelmRepository
-        name: truecharts-homepage
+        name: truecharts
         namespace: flux-system

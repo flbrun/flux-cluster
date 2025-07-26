@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: truecharts-homepage
+  name: truecharts
 spec:
   type: oci
-  url: oci://tccr.io/truecharts/homepage
+  url: oci://tccr.io/truecharts
   interval: 10m
