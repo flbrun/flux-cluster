@@ -8,4 +8,5 @@ resources:
   - paths
   - redis
   - prometheus
+  - grafana
   - system-upgrade-controller
