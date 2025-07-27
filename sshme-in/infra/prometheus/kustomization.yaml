@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - prometheus-release.yaml
-  - kube-state-metrics-release.yaml
