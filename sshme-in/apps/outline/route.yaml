@@ -7,7 +7,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Note taking Tool
     gethomepage.dev/group: Apps
-    gethomepage.dev/icon: https://github.com/kubernetes-sigs/headlamp/blob/main/frontend/public/favicon.ico
+    gethomepage.dev/icon: https://www.getoutline.com/images/logo.svg
     gethomepage.dev/app: outline-route
     gethomepage.dev/name: Outline
     gethomepage.dev/pod-selector: ""

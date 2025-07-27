@@ -7,7 +7,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Cluster Management
     gethomepage.dev/group: Infra
-    gethomepage.dev/icon: https://raw.githubusercontent.com/headlamp-k8s/headlamp/main/public/logo192.png
+    gethomepage.dev/icon: https://headlamp.dev/img/logo.svg
     gethomepage.dev/app: headlamp-route
     gethomepage.dev/name: Headlamp
     gethomepage.dev/pod-selector: ""
