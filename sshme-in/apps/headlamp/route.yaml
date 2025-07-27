@@ -3,15 +3,15 @@ kind: HTTPRoute
 metadata:
   name: headlamp-route
   annotations:
-    gethomepage.dev/href: "https://emby.example.com"
+    gethomepage.dev/href: "https://headlamp.sshme.in"
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/description: Media Server
-    gethomepage.dev/group: Media
+    gethomepage.dev/description: Cluster Dashboard
+    gethomepage.dev/group: Infra
     gethomepage.dev/icon: emby.png
-    gethomepage.dev/app: headlamp-route # optional, may be needed if app.kubernetes.io/name != ingress metadata.name
+    gethomepage.dev/app: headlamp-route
     gethomepage.dev/name: headlamp-route
     gethomepage.dev/widget.type: "emby"
-    gethomepage.dev/widget.url: "https://emby.example.com"
+    gethomepage.dev/widget.url: "https://headlamp.sshme.in"
     gethomepage.dev/pod-selector: ""
 spec:
   parentRefs:
