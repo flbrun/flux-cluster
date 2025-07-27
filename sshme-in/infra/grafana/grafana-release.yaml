@@ -39,5 +39,7 @@ spec:
             access: proxy
             url: http://prometheus-server
             isDefault: true
+    dashboardsConfigMaps:
+      keycloak-dashboard-1: keycloak-dashboard-1.json
 
     
