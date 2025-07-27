@@ -5,7 +5,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
 data:
-  keycloak-dashboard-1.json: |
+  keycloak-dashboard-1: |
     {
       "__inputs": [
         {
