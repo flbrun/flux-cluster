@@ -9,7 +9,7 @@ data:
     {
       "__inputs": [
         {
-          "name": "DS_PROMETHEUS",
+          "name": "PROMETHEUS",
           "label": "Prometheus",
           "description": "",
           "type": "datasource",
@@ -91,7 +91,7 @@ data:
       "panels": [
         {
           "collapsed": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -706,7 +706,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -1116,7 +1116,7 @@ data:
               "bars": false,
               "dashLength": 10,
               "dashes": false,
-              "datasource": "${DS_PROMETHEUS}",
+              "datasource": "PROMETHEUS",
               "decimals": 0,
               "fieldConfig": {
                 "defaults": {
@@ -1210,7 +1210,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -1571,7 +1571,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -1758,7 +1758,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -2388,7 +2388,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -2922,7 +2922,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -2936,7 +2936,7 @@ data:
               "bars": false,
               "dashLength": 10,
               "dashes": false,
-              "datasource": "${DS_PROMETHEUS}",
+              "datasource": "PROMETHEUS",
               "fieldConfig": {
                 "defaults": {
                   "custom": {}
@@ -3048,7 +3048,7 @@ data:
               "bars": false,
               "dashLength": 10,
               "dashes": false,
-              "datasource": "${DS_PROMETHEUS}",
+              "datasource": "PROMETHEUS",
               "fieldConfig": {
                 "defaults": {
                   "custom": {}
@@ -3143,7 +3143,7 @@ data:
               "bars": false,
               "dashLength": 10,
               "dashes": false,
-              "datasource": "${DS_PROMETHEUS}",
+              "datasource": "PROMETHEUS",
               "fieldConfig": {
                 "defaults": {
                   "custom": {}
@@ -3238,7 +3238,7 @@ data:
               "bars": false,
               "dashLength": 10,
               "dashes": false,
-              "datasource": "${DS_PROMETHEUS}",
+              "datasource": "PROMETHEUS",
               "fieldConfig": {
                 "defaults": {
                   "custom": {}
@@ -3334,7 +3334,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -3783,7 +3783,7 @@ data:
         },
         {
           "collapsed": true,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "PROMETHEUS",
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -4109,8 +4109,8 @@ data:
           },
           {
             "current": {
-              "value": "${VAR_DATASOURCE}",
-              "text": "${VAR_DATASOURCE}",
+              "value": "PROMETHEUS",
+              "text": "PROMETHEUS",
               "selected": false
             },
             "error": null,
@@ -4119,12 +4119,12 @@ data:
             "name": "datasource",
             "options": [
               {
-                "value": "${VAR_DATASOURCE}",
-                "text": "${VAR_DATASOURCE}",
+                "value": "PROMETHEUS",
+                "text": "PROMETHEUS",
                 "selected": false
               }
             ],
-            "query": "${VAR_DATASOURCE}",
+            "query": "PROMETHEUS",
             "skipUrlSync": false,
             "type": "constant"
           }
