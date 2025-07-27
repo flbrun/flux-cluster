@@ -36,10 +36,8 @@ spec:
             # For configuration options and examples, please see:
             # https://gethomepage.dev/latest/configs/settings
             title: SSHM3-1N
-            background: 
-              image: https://images.unsplash.com/photo-1508144753681-9986d4df99b3?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-              blur: sm
-              opacity: 50
+            background:  https://images.unsplash.com/photo-1508144753681-9986d4df99b3?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+            cardBlur: sm
 
             providers:
               openweathermap: openweathermapapikey
