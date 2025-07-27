@@ -10,7 +10,6 @@ metadata:
     gethomepage.dev/icon: https://github.com/kubernetes-sigs/headlamp/blob/main/frontend/public/favicon.ico
     gethomepage.dev/app: headlamp-route
     gethomepage.dev/name: Headlamp
-    gethomepage.dev/widget.url: "https://headlamp.sshme.in"
     gethomepage.dev/pod-selector: ""
 spec:
   parentRefs:
