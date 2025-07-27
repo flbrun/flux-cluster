@@ -82,15 +82,15 @@ spec:
                     - abbr: GH
                       href: https://github.com/
 
-            - Social:
-                - Reddit:
-                    - abbr: RE
-                      href: https://reddit.com/
+          #  - Social:
+          #      - Reddit:
+          #          - abbr: RE
+          #            href: https://reddit.com/
 
-            - Entertainment:
-                - YouTube:
-                    - abbr: YT
-                      href: https://youtube.com/
+          #  - Entertainment:
+          #      - YouTube:
+          #          - abbr: YT
+          #            href: https://youtube.com/
     forceConfigFromValues: false
     rbac:
       main:
