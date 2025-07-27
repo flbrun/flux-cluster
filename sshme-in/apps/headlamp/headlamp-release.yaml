@@ -50,12 +50,18 @@ spec:
           - target:
               kind: Service
             patch: |
-               metadata:
-                labels:
-                  homepage.group: Cluster
-                  homepage.name: Headlamp
-                  homepage.icon: mdi-kubernetes
-                  homepage.href: http://headlamp.default.svc.cluster.local
+              - op: add
+                path: /metadata/labels/homepage.group
+                value: Cluster
+              - op: add
+                path: /metadata/labels/homepage.name
+                value: Headlamp
+              - op: add
+                path: /metadata/labels/homepage.icon
+                value: mdi-kubernetes
+              - op: add
+                path: /metadata/labels/homepage.href
+                value: http://headlamp.default.svc.cluster.local
   
      
 
