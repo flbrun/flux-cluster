@@ -30,26 +30,65 @@ spec:
           custom.css: ""
           kubernetes.yaml: |
             mode: cluster
+            gateway: true
           settings.yaml: |
             ---
-            background: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/settings
+
+            providers:
+              openweathermap: openweathermapapikey
+              weatherapi: weatherapiapikey
           widgets.yaml: |
             ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/widgets
+
+            - resources:
+                cpu: true
+                memory: true
+                disk: /
+
+            - search:
+                provider: duckduckgo
+                target: _blank
+
           services.yaml: |
             ---
-            - Infra:
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/services
+
+            - Arr:
                 - My First Service:
                     href: http://localhost/
                     description: Homepage is awesome
-            - Apps:
+
+            - Media:
+                - My Second Service:
+                    href: http://localhost/
+                    description: Homepage is the best
+
+            - Infra:
                 - My Third Service:
                     href: http://localhost/
                     description: Homepage is 😎
           bookmarks.yaml: |
             ---
-            - Developer:
-              - Github:
-                  - abbr: GH
-                    href: https://github.com/
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/bookmarks
 
+            - Developer:
+                - Github:
+                    - abbr: GH
+                      href: https://github.com/
+
+            - Social:
+                - Reddit:
+                    - abbr: RE
+                      href: https://reddit.com/
+
+            - Entertainment:
+                - YouTube:
+                    - abbr: YT
+                      href: https://youtube.com/
     forceConfigFromValues: false
