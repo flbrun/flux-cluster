@@ -34,7 +34,7 @@ spec:
       datasources.yaml:
         apiVersion: 1
         datasources:
-          - name: Prometheus
+          - name: DS_PROMETHEUS
             type: prometheus
             access: proxy
             url: http://prometheus-server

@@ -885,6 +885,7 @@ metadata:
   name: keycloak-troubleshooting-dashboard
   labels:
     grafana_dashboard: "2"
+
 data:
   keycloak-troubleshooting-dashboard.json: |-
     {
