@@ -45,8 +45,11 @@ spec:
             # https://gethomepage.dev/latest/configs/widgets
 
             - search:
-                provider: duckduckgo
+                provider: custom
+                url: https://www.ecosia.org/search?q=
                 target: _blank
+                suggestionUrl: https://ac.ecosia.org/autocomplete?type=list&q=
+                showSearchSuggestions: true
             - kubernetes:
                 cluster:
                   show: true
