@@ -92,3 +92,13 @@ spec:
                     - abbr: YT
                       href: https://youtube.com/
     forceConfigFromValues: false
+    rbac:
+      main:
+        rules:
+          - apiGroups:
+              - gateway.networking.k8s.io
+            resources:
+              - httproutes
+            verbs:
+              - get
+              - list
