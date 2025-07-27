@@ -44,6 +44,20 @@ spec:
       - name: headlamp-plugins
         persistentVolumeClaim:
           claimName: headlamp
+  postRenderers:
+    kustomize:
+      patches:
+        - target:
+            kind: Service
+          patch: |
+            apiVersion: v1
+            kind: Service
+            metadata:
+              labels:
+                homepage.group: Cluster
+                homepage.name: Headlamp
+                homepage.icon: mdi-kubernetes
+                homepage.href: http://headlamp.default.svc.cluster.local
   
      
 
