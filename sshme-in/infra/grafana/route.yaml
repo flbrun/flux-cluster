@@ -7,7 +7,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Cluster Dashboard
     gethomepage.dev/group: Infra
-    gethomepage.dev/icon: https://github.com/kubernetes-sigs/headlamp/blob/main/frontend/public/favicon.ico
+    gethomepage.dev/icon: https://www.svgrepo.com/show/448228/grafana.svg
     gethomepage.dev/app: grafana-route
     gethomepage.dev/name: Grafana
     gethomepage.dev/pod-selector: ""
