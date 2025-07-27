@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: keycloak-dashboard-1
+  name: keycloak-capacity-planning-dashboard
   labels:
     grafana_dashboard: "1"
 data:
-  keycloak-dashboard-1: |
+  keycloak-capacity-planning-dashboard.json: |
     {
       "__inputs": [
         {
@@ -882,11 +882,11 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: keycloak-dashboard-2
+  name: keycloak-troubleshooting-dashboard
   labels:
     grafana_dashboard: "2"
 data:
-  keycloak-dashboard-2.json: |
+  keycloak-troubleshooting-dashboard.json: |-
     {
       "__inputs": [
         {
