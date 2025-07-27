@@ -5,7 +5,7 @@ metadata:
   annotations:
     gethomepage.dev/href: "https://headlamp.sshme.in"
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/description: Cluster Dashboard
+    gethomepage.dev/description: Cluster Management
     gethomepage.dev/group: Infra
     gethomepage.dev/icon: https://github.com/kubernetes-sigs/headlamp/blob/main/frontend/public/favicon.ico
     gethomepage.dev/app: headlamp-route
