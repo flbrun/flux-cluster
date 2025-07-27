@@ -70,7 +70,7 @@ spec:
                 - Github:
                     - abbr: GH
                       href: https://github.com/
-                - Github:
+                - Flux-Repo:
                     - abbr: GH
                       href: https://github.com/flbrun/flux-cluster
                       
