@@ -11,3 +11,28 @@ spec:
         kind: HelmRepository
         name: theia-cloud-repo
         namespace: flux-system
+  values:
+    app:
+      id: asdfghjkl
+      name: My Theia
+
+    demoApplication:
+      name: theiacloud/theia-cloud-demo
+      timeout: "30"
+
+    hosts:
+      usePaths: true
+      configuration:
+        baseHost: code.sshme.in
+
+    keycloak:
+      enable: false
+
+    operator:
+      cloudProvider: "K8S"
+
+    operatorrole:
+      name: operator-api-access
+
+    servicerole:
+      name: service-api-access
