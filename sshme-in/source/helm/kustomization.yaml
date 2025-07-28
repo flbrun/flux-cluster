@@ -10,4 +10,5 @@ resources:
   - external-secrets.yaml
   - prometheus-community.yaml
   - grafana.yaml
+  - theia.yaml
   
