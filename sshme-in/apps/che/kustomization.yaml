@@ -1,6 +1,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - theia-base.yaml
-  - theia-crds.yaml
-  - theia-release.yaml
+  - che-release.yaml

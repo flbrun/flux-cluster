@@ -1,14 +1,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: theia-base
+  name: theia
 spec:
   interval: 5m
   chart:
     spec:
-      chart: theia-cloud-base
+      chart: theia-cloud
       sourceRef:
         kind: HelmRepository
-        name: theia-cloud-repo
+        name: eclipse-che/eclipse-che
         namespace: flux-system
- 
+

@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: theia-cloud-repo
+  name: eclipse-che
 spec:
-  url: https://eclipse-theia.github.io/theia-cloud-helm/
+  url: https://eclipse-che.github.io/che-operator/charts
   interval: 10m
