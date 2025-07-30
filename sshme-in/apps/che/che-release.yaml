@@ -11,4 +11,7 @@ spec:
         kind: HelmRepository
         name: eclipse-che
         namespace: flux-system
+  values:
+    global:
+      cheNamespace: apps
 
