@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: eclipse-che
+  name: coder
 spec:
-  url: https://eclipse-che.github.io/che-operator/charts
+  url: https://helm.coder.com/v2
   interval: 10m

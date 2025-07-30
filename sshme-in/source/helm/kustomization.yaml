@@ -10,5 +10,5 @@ resources:
   - external-secrets.yaml
   - prometheus-community.yaml
   - grafana.yaml
-  - che.yaml
+  - coder.yaml
   

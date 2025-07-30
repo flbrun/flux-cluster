@@ -1,17 +1,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: che
+  name: coder
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
-      chart: eclipse-che
+      chart: coder
       sourceRef:
         kind: HelmRepository
-        name: eclipse-che
+        name: coder
         namespace: flux-system
-  values:
-    global:
-      cheNamespace: apps
+
 
