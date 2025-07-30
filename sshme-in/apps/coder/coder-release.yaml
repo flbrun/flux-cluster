@@ -15,5 +15,23 @@ spec:
     coder:
       service:
         type: ClusterIP
+      env:
+        - name: CODER_AUTH_PROVIDER
+          value: "oidc"
+        - name: CODER_OIDC_ISSUER_URL
+          value: "https://keycloak.sshme.in/auth/realms/sshme-in"
+        - name: CODER_OIDC_CLIENT_ID
+          value: "coder"
+        - name: CODER_OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oidc-client-secret
+              key: client-secret
+        - name: CODER_OIDC_SCOPES
+          value: "openid email profile"
+        - name: CODER_OIDC_USERNAME_CLAIM
+          value: "email"
+        - name: CODER_ACCESS_URL
+          value: "https://coder.sshme.in"
 
 
