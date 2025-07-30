@@ -19,7 +19,7 @@ spec:
         - name: CODER_AUTH_PROVIDER
           value: "oidc"
         - name: CODER_OIDC_ISSUER_URL
-          value: "https://keycloak.sshme.in/auth/realms/sshme-in"
+          value: "https://keycloak.sshme.in/realms/sshme-in"
         - name: CODER_OIDC_CLIENT_ID
           value: "coder"
         - name: CODER_OIDC_CLIENT_SECRET
