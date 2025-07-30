@@ -11,5 +11,8 @@ spec:
         kind: HelmRepository
         name: coder
         namespace: flux-system
+  values:
+    service:
+      type: ClusterIP
 
 
