@@ -24,4 +24,4 @@ spec:
             value: /
       backendRefs:
         - name: coder
-          port: 80
+          port: 8080
