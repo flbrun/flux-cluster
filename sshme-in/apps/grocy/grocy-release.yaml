@@ -2,8 +2,23 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: grocy
+  namespace: default
 spec:
   interval: 5m
+  install:
+    remediation:
+      retries: 3
+    postRenderers:
+      - kustomize:
+          patches:
+            - target:
+                kind: Deployment
+                name: grocy
+              patch: |-
+                - op: add
+                  path: /spec/template/spec/nodeSelector
+                  value:
+                    kubernetes.io/hostname: nuc-node0
   chart:
     spec:
       chart: grocy
