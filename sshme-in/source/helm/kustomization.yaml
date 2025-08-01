@@ -11,4 +11,5 @@ resources:
   - prometheus-community.yaml
   - grafana.yaml
   - coder.yaml
+  - k8s-at-home.yaml
   

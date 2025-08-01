@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: grocy-route
+  annotations:
+    gethomepage.dev/href: "https://grocy.sshme.in"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Household Management
+    gethomepage.dev/group: Apps
+    gethomepage.dev/icon: https://staging.artifacthub.io/image/2c2066eb-49cc-4657-8f5a-010578bb123d@1x
+    gethomepage.dev/app: grocy-route
+    gethomepage.dev/name: Grocy
+    gethomepage.dev/pod-selector: ""
+spec:
+  parentRefs:
+    - name: default-gateway
+      namespace: istio-ingress
+  hostnames:
+    - grocy.sshme.in
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: grocy
+          port: 80
