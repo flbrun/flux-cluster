@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: home-assistant-route
+  annotations:
+    gethomepage.dev/href: "https://assistant.sshme.in"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Manage Smarthome
+    gethomepage.dev/group: Apps
+    gethomepage.dev/icon: https://staging.artifacthub.io/image/abba4860-13b2-4aee-b2fc-fd6f52ece8d4@1x
+    gethomepage.dev/app: home-assistant-route
+    gethomepage.dev/name: "Home Assistant"
+    gethomepage.dev/pod-selector: ""
+spec:
+  parentRefs:
+    - name: default-gateway
+      namespace: istio-ingress
+  hostnames:
+    - assistant.sshme.in
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: home-assistant
+          port: 80
