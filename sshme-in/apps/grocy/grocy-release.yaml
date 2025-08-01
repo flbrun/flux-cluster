@@ -15,5 +15,5 @@ spec:
         namespace: flux-system
   values:
     image:
-  repository: linuxserver/grocy
-  tag: 4.5.0
+      repository: linuxserver/grocy
+      tag: 4.5.0
