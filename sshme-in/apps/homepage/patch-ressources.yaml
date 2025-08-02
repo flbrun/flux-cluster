@@ -1,0 +1,10 @@
+# apps/homepage/patch-resources.yaml
+- op: add
+  path: /spec/template/spec/containers/0/resources
+  value:
+    requests:
+      cpu: 15m
+      memory: 164M
+    limits:
+      cpu: 15m
+      memory: 164M
