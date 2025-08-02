@@ -13,8 +13,6 @@ spec:
         name: headlamp
         namespace: flux-system
   values:
-    image:
-      tag: 0.34.0
     config:
        pluginsDir: /build/plugins
        oidc:
