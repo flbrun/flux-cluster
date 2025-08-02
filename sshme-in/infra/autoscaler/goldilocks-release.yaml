@@ -15,3 +15,5 @@ spec:
   values:
     vpa:
       enabled: true
+      updater:
+        enabled: true
