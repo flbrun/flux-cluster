@@ -12,4 +12,5 @@ resources:
   - grafana.yaml
   - coder.yaml
   - k8s-at-home.yaml
+  - fairwinds.yaml
   
