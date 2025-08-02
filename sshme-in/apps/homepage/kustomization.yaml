@@ -8,3 +8,4 @@ patches:
   - path: patch-resources.yaml
     target:
       kind: Deployment
+      labelSelector: helm.toolkit.fluxcd.io/name=homepage
