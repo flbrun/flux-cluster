@@ -1,5 +1,5 @@
 # apps/homepage/patch-resources.yaml
-- op: add
+- op: replace
   path: /spec/template/spec/containers/0/resources
   value:
     requests:
