@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: goldilocks-route
+  annotations:
+    gethomepage.dev/href: "https://goldi.sshme.in"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: VPA Dashboard
+    gethomepage.dev/group: Infra
+    gethomepage.dev/icon: https://artifacthub.io/image/7ded8503-62b0-4f01-8e5d-4b1231129691@1x
+    gethomepage.dev/app: goldilocks-route
+    gethomepage.dev/name: Goldilocks
+    gethomepage.dev/pod-selector: ""
+spec:
+  parentRefs:
+    - name: default-gateway
+      namespace: istio-ingress
+  hostnames:
+    - goldi.sshme.in
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: goldilocks
+          port: 80
