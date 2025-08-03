@@ -4,3 +4,4 @@ namespace: storage
 resources:
   - namespace.yaml
   - redis
+  - source.yaml
