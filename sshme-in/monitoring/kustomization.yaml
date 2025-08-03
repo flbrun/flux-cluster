@@ -22,7 +22,7 @@ patches:
         value: monitoring
       - op: replace
         path: /spec/path
-        value: ./monitoring
+        value: ./sshme-in/monitoring
       - op: replace
         path: /spec/targetNamespace
         value: monitoring
