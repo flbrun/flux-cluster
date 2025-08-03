@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - source-folder.yaml
   - apps.yaml
+  - storage.yaml
