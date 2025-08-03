@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - outline-release.yaml
   - route.yaml
+  - minio-outline-secret.yaml

@@ -4,9 +4,14 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 1m
   path: ./sshme-in/apps
   prune: true
+  targetNamespace: apps
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   sourceRef:
     kind: GitRepository
     name: flux-system
