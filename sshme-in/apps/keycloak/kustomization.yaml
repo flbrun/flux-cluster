@@ -4,3 +4,4 @@ namespace: apps
 resources:
   - keycloak-release.yaml
   - route.yaml
+  - postgres-config-keycloak-secret.yaml
