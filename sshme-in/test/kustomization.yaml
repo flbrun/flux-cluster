@@ -14,8 +14,9 @@ patches:
         value: test
   - target:
       kind: Namespace
+      name: placeholder
     patch: |-
-      - op: add
+      - op: replace
         path: /metadata/name
         value: test
   - target:
