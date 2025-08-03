@@ -4,3 +4,4 @@ resources:
   - headlamp-release.yaml
   - route.yaml
   - cluster-access.yaml
+  - headlamp-oicd-secret.yaml
