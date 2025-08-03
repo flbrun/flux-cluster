@@ -4,3 +4,4 @@ namespace: monitoring
 resources:
   - flux.yaml
   - monitoring.yaml
+  - storage.yaml
