@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - coder-release.yaml
   - route.yaml
+  - oidc-client-secret.yaml
