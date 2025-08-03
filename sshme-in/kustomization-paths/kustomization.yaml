@@ -5,3 +5,4 @@ resources:
   - storage.yaml
   - system-upgrade.yaml
   - charts.yaml
+  - apps.yaml
