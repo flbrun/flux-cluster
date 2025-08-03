@@ -6,3 +6,4 @@ resources:
   - route.yaml
   - minio-outline-secret.yaml
   - postgres-outline-password-secret.yaml
+  - redis-secret.yaml
