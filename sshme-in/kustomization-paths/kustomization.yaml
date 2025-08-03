@@ -4,3 +4,4 @@ resources:
   - flux.yaml
   - monitoring.yaml
   - storage.yaml
+  - system-upgrade.yaml
