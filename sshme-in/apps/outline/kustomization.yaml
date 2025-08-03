@@ -7,3 +7,4 @@ resources:
   - minio-outline-secret.yaml
   - postgres-outline-password-secret.yaml
   - redis-secret.yaml
+  - keycloak-outline-secret.yaml
