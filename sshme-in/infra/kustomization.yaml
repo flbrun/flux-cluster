@@ -2,12 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - cert-manager
- # - flux/flux-system
   - gateways
   - istio
-  - paths
-  #- redis
-  #- prometheus
-  #- grafana
-  # - system-upgrade-controller
   - autoscaler
