@@ -7,7 +7,7 @@ resources:
   - istio
   - paths
   - redis
-  - prometheus
-  - grafana
+  #- prometheus
+  #- grafana
   - system-upgrade-controller
   - autoscaler
