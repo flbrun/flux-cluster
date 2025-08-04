@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
 - autoscaler
 - cert-manager
+- istio
+- gateways
