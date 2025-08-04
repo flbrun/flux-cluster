@@ -6,3 +6,4 @@ resources:
   - system-upgrade.yaml
   - charts.yaml
   - apps.yaml
+  - infra.yaml
