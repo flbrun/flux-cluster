@@ -6,5 +6,4 @@ resources:
   - istiod.yaml
   - ztunnel.yaml
   - node-agent.yaml
-  - istio-ingress-namespace.yaml
   - istio-system-namespace.yaml
