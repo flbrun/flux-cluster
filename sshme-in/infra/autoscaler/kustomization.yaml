@@ -4,3 +4,4 @@ namespace: autoscaler
 resources:
   - goldilocks-release.yaml
   - route.yaml
+  - namespace.yaml
