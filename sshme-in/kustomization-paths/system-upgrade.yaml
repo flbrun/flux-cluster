@@ -4,7 +4,7 @@ metadata:
   name: system-upgrade
   namespace: flux-system
 spec:
-  interval: 1m
+  interval: 5m
   path: ./sshme-in/system-upgrade
   prune: true
   sourceRef:
