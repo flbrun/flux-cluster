@@ -5,3 +5,4 @@ resources:
   - default-gateway.yaml
   - sshme-certificate.yaml
   - http-redirect.yaml
+  - istio-ingress-namespace.yaml
