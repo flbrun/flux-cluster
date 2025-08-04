@@ -7,10 +7,10 @@ spec:
   interval: 5m
   path: ./sshme-in/infra
   prune: true
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
+ # decryption:
+ #   provider: sops
+ #   secretRef:
+ #     name: sops-age
   sourceRef:
     kind: GitRepository
     name: flux-system
