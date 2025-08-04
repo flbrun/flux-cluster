@@ -7,7 +7,6 @@ spec:
   interval: 5m
   path: ./sshme-in/infra
   prune: true
-  targetNamespace: infra
   decryption:
     provider: sops
     secretRef:
