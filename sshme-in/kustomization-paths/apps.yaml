@@ -7,7 +7,6 @@ spec:
   interval: 5m
   path: ./sshme-in/apps
   prune: true
-  targetNamespace: apps
   decryption:
     provider: sops
     secretRef:
