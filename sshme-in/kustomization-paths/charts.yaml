@@ -4,7 +4,7 @@ metadata:
   name: charts
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 10m
   path: ./sshme-in/charts
   prune: true
   targetNamespace: flux-system
