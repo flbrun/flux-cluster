@@ -13,7 +13,6 @@ spec:
         name: community-charts
         namespace: flux-system
   values:
-    image:
     url: "https://outline.sshme.in"
     externalPostgresql:
       host: "10.10.10.3"
