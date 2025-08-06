@@ -17,7 +17,7 @@ spec:
       strategy: "anonymous"
     external_services:
       prometheus:
-        url: "http://prometheus-server.monitoring.svc.cluster.local:80"
+        url: "http://prometheus-server.monitoring"
       grafana:
         enabled: true
         url: "http://grafana.monitoring:80"
