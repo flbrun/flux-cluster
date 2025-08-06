@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: waypoint
+  namespace: apps
+  labels:
+    istio.io/dataplane-mode: ambient
+    istio.io/gateway: waypoint
+spec:
+  gatewayClassName: istio
+  listeners:
+    - name: mesh
+      protocol: ALL
+      port: 15008
