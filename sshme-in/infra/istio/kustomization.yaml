@@ -9,3 +9,4 @@ resources:
   - istio-system-namespace.yaml
   - kiali-release.yaml
   - route.yaml
+  - peer-auth.yaml
