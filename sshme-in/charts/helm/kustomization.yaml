@@ -13,4 +13,5 @@ resources:
   - coder.yaml
   - k8s-at-home.yaml
   - fairwinds.yaml
+  - kiali.yaml
   
