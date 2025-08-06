@@ -7,3 +7,5 @@ resources:
   - ztunnel.yaml
   - node-agent.yaml
   - istio-system-namespace.yaml
+  - kiali-release.yaml
+  - route.yaml
