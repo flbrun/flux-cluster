@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kiali-server
+  namespace: istio-system
 spec:
   interval: 10m
   chart:
@@ -14,3 +15,13 @@ spec:
   values:
     auth:
       strategy: "anonymous"
+    external_services:
+      prometheus:
+        url: "http://prometheus.monitoring:9090"
+      grafana:
+        enabled: true
+        url: "http://grafana.monitoring:80"
+        in_cluster_url: "http://grafana.monitoring:80"
+
+    deployment:
+      accessible_namespaces: ["**"]
