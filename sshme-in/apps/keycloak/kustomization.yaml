@@ -5,3 +5,4 @@ resources:
   - keycloak-release.yaml
   - route.yaml
   - postgres-config-keycloak-secret.yaml
+  - destination-rule.yaml
