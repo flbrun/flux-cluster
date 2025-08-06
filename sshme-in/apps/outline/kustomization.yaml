@@ -8,4 +8,4 @@ resources:
   - postgres-outline-password-secret.yaml
   - redis-secret.yaml
   - keycloak-outline-secret.yaml
-  - destination-rule.yaml
+  #- destination-rule.yaml
