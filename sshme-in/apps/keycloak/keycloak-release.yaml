@@ -12,6 +12,8 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
+    networkPolicy:
+      enabled: false
     postgresql:
       enabled: false
     externalDatabase:
