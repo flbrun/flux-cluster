@@ -22,10 +22,12 @@ spec:
       existingSecretDatabaseKey: "database"
       existingSecretPasswordKey: "password"
     extraEnvVars:
-      - name: KC_HTTP_ENABLED
-        value: "false"
-      - name: KC_PROXY_HEADERS
-        value: "xforwarded"
+       - name: KC_HTTP_ENABLED
+         value: "true"
+       - name: KC_BIND
+         value: "0.0.0.0"
+       - name: KC_PROXY_HEADERS
+         value: "xforwarded"
     metrics:
       enabled: true
     serviceMonitor:
