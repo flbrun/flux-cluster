@@ -3,9 +3,15 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: allow-outline-to-redis
+  namespace: storage
 spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis
+      app.kubernetes.io/component: master
   action: ALLOW
   rules:
   - from:
     - source:
-        namespaces: ["apps"]
+        namespaces:
+        - apps
