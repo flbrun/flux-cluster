@@ -27,7 +27,8 @@ spec:
         token_url: https://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/token
         api_url: ttps://keycloak.sshme.in/realms/sshme-in/protocol/openid-connect/userinfo
         scopes: "openid email profile"
-        auto_login: true         
+        auto_login: true
+        role_attribute_path: contains(groups[*], 'k8s-admin') && 'Admin' || 'Viewer'         
       auth:
         disable_login_form: true
     datasources:
