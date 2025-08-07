@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   #- waypoint.yaml
   - service-entry.yaml
+  - sa.yaml
   - coder
   - grocy
   - headlamp
