@@ -6,3 +6,4 @@ metadata:
     istio.io/dataplane-mode: ambient
     istio.io/use-waypoint: waypoint
     goldilocks.fairwinds.com/enabled: "true"
+    goldilocks.fairwinds.com/vpa-update-mode: "initial"

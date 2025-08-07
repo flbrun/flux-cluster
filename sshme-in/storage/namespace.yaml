@@ -5,3 +5,4 @@ metadata:
   labels:
     istio.io/dataplane-mode: ambient
     goldilocks.fairwinds.com/enabled: "true"
+    goldilocks.fairwinds.com/vpa-update-mode: "initial"
