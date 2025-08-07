@@ -38,7 +38,7 @@ spec:
           - name: PROMETHEUS
             type: prometheus
             access: proxy
-            url: http://prometheus-server
+            url:  "http://prometheus-kube-prometheus-prometheus:9090"
             isDefault: true
     sidecar:
       dashboards:
