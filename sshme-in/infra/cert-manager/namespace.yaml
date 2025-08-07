@@ -4,4 +4,4 @@ metadata:
   name: cert-manager
   labels:
     istio.io/dataplane-mode: ambient
-    goldilocks.fairwinds.com/enabled: true
+    goldilocks.fairwinds.com/enabled: "true"
