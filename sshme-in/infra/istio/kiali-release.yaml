@@ -22,6 +22,18 @@ spec:
         enabled: true
         url: "http://grafana.monitoring"
         in_cluster_url: "http://grafana.monitoring"
+        auth:
+          type: basic
+          username:
+            valueFrom:
+              secretKeyRef:
+                name: grafana-auth
+                key: username
+          password:
+            valueFrom:
+              secretKeyRef:
+                name: grafana-auth
+                key: password
 
     deployment:
       accessible_namespaces: ["**"]

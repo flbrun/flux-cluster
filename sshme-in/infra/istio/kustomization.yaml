@@ -10,3 +10,4 @@ resources:
   - kiali-release.yaml
   - route.yaml
   - peer-auth.yaml
+  - grafana-sa-secret.yaml
