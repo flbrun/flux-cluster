@@ -24,10 +24,24 @@ spec:
     extraEnvVars:
       # - name: KC_HTTP_ENABLED
       #   value: "true"
-       - name: KC_BIND
-         value: "0.0.0.0"
+      # - name: KC_BIND
+      #   value: "0.0.0.0"
       # - name: KC_PROXY_HEADERS
       #   value: "xforwarded"
+      ########################
+      - name: KC_HTTP_ENABLED
+        value: "true"
+      - name: KC_PROXY
+        value: "edge"
+      - name: KC_HOSTNAME
+        value: keycloak.sshme.in
+      - name: KC_HOSTNAME_STRICT
+        value: "true"
+      - name: KC_PROXY_HEADERS
+        value: xforwarded
+      - name: KC_BIND
+        value: "0.0.0.0"
+
     metrics:
       enabled: true
     serviceMonitor:
