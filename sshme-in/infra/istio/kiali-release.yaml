@@ -20,8 +20,8 @@ spec:
         url: "http://prometheus-server.monitoring"
       grafana:
         enabled: true
-        url: "http://grafana.monitoring:80"
-        in_cluster_url: "http://grafana.monitoring:80"
+        url: "http://grafana.monitoring"
+        in_cluster_url: "http://grafana.monitoring"
 
     deployment:
       accessible_namespaces: ["**"]
