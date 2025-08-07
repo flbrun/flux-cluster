@@ -14,5 +14,3 @@ spec:
   values:
     global:
       profile: ambient
-    sidecarInjectorWebhook:
-      enabled: true
