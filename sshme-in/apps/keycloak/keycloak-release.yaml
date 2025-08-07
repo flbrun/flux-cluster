@@ -12,6 +12,7 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
+    production: true
     networkPolicy:
       enabled: false
     postgresql:
@@ -24,13 +25,6 @@ spec:
       existingSecretDatabaseKey: "database"
       existingSecretPasswordKey: "password"
     extraEnvVars:
-      # - name: KC_HTTP_ENABLED
-      #   value: "true"
-      # - name: KC_BIND
-      #   value: "0.0.0.0"
-      # - name: KC_PROXY_HEADERS
-      #   value: "xforwarded"
-      ########################
       - name: KC_HTTP_ENABLED
         value: "true"
       - name: KC_PROXY
@@ -43,6 +37,10 @@ spec:
         value: https://keycloak.sshme.in
       - name: KC_HOSTNAME_ADMIN
         value: https://keycloak.sshme.in
+      - name: KC_METRICS_ENABLED
+        value: "true"
+      - name: JAVA_OPTS_APPEND
+        value: "-Djava.net.preferIPv4Stack=true"
 
     metrics:
       enabled: true
