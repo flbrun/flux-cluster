@@ -5,4 +5,4 @@ resources:
   - grafana-release.yaml
   - route.yaml
   - grafana-oidc-secret.yaml
- # - dashboards
+  - dashboards
