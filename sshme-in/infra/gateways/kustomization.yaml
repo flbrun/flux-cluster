@@ -6,3 +6,4 @@ resources:
   - sshme-certificate.yaml
   - http-redirect.yaml
   - istio-ingress-namespace.yaml
+  - permis.yaml
