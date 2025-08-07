@@ -4,3 +4,4 @@ metadata:
   name: storage
   labels:
     istio.io/dataplane-mode: ambient
+    goldilocks.fairwinds.com/enabled: true
