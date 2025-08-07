@@ -29,5 +29,5 @@ spec:
 
     deployment:
       accessible_namespaces: ["**"]
-      pod_annotations:
+      pod_labels:
         istio.io/dataplane-mode: "ambient"
