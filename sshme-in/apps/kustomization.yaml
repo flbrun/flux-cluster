@@ -4,6 +4,7 @@ namespace: apps
 resources:
   - namespace.yaml
   #- waypoint.yaml
+  - service-entry.yaml
   - coder
   - grocy
   - headlamp
