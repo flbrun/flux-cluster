@@ -12,7 +12,12 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
-    production: true
+    command:
+      - "/opt/bitnami/scripts/keycloak/entrypoint.sh"
+    args:
+      - "/opt/bitnami/scripts/keycloak/run.sh"
+      - start
+      - --optimized
     networkPolicy:
       enabled: false
     postgresql:
