@@ -3,8 +3,6 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - namespace.yaml
-  - authz-policy.yaml
-  - peer-auth.yaml
   - grafana
   - prometheus
   
