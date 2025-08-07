@@ -24,7 +24,7 @@ spec:
         in_cluster_url: "http://grafana.monitoring"
         auth:
           type: basic
-          username: Kiali
+          username: secret:grafana-auth:username
           password: secret:grafana-auth:password
 
     deployment:
