@@ -25,10 +25,10 @@ spec:
       existingSecretDatabaseKey: "database"
       existingSecretPasswordKey: "password"
     extraEnvVars:
-      - name: KC_HTTP_ENABLED
-        value: "true"
-      - name: KC_PROXY
-        value: "edge"
+      #- name: KC_HTTP_ENABLED
+      #  value: "true"
+      #- name: KC_PROXY
+      #  value: "edge"
       - name: KC_PROXY_HEADERS
         value: xforwarded
       - name: KC_BIND
@@ -39,8 +39,8 @@ spec:
         value: https://keycloak.sshme.in
       - name: KC_METRICS_ENABLED
         value: "true"
-      - name: JAVA_OPTS_APPEND
-        value: "-Djava.net.preferIPv4Stack=true"
+      #- name: JAVA_OPTS_APPEND
+      #  value: "-Djava.net.preferIPv4Stack=true"
       #- name: KC_CACHE_STACK
       #  value: "jdbc-ping"
       #- name: KC_CACHE
