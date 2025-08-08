@@ -42,8 +42,8 @@ spec:
         value: "-Djava.net.preferIPv4Stack=true"
       - name: KC_CACHE_STACK
         value: "jdbc-ping"
-      - name: KC_CACHE
-        value: "ispn"
+      #- name: KC_CACHE
+      #  value: "ispn"
 
     metrics:
       enabled: true
