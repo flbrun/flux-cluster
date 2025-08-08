@@ -3,4 +3,5 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - prometheus-release.yaml
-  #- dest-rule.yaml
+  - redis-exporter-release.yaml
+  

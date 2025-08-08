@@ -12,12 +12,6 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack
     networkPolicy:
       enabled: false
     auth:
