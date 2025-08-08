@@ -45,3 +45,8 @@ spec:
       - name: KC_CACHE
         value: "ispn"
 
+    metrics:
+      enabled: true
+    serviceMonitor:
+      enabled: true
+      interval: 30s
