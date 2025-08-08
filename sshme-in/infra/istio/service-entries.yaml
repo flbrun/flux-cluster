@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: storage-sshme-in
+  name: storage-hetzner
 spec:
   hosts: ["storage.sshme.in"]
   exportTo: ["*"]
