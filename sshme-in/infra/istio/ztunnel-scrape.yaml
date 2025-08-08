@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ztunnel-metrics
+  namespace: istio-system
+  labels:
+    app: ztunnel
+spec:
+  selector:
+    app: ztunnel         
+  ports:
+  - name: http-monitoring
+    port: 15020
+    targetPort: 15020
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ztunnel
+  namespace: istio-system
+  labels:
+    release: prometheus   
+spec:
+  selector:
+    matchLabels:
+      app: ztunnel
+  namespaceSelector:
+    matchNames: ["istio-system"]
+  endpoints:
+  - port: http-monitoring
+    path: /stats/prometheus
+    interval: 30s
