@@ -11,3 +11,4 @@ resources:
   - route.yaml
   - grafana-sa-secret.yaml
   - ztunnel-scrape.yaml
+  - service-entries.yaml

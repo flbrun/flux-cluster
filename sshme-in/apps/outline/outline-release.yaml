@@ -17,7 +17,7 @@ spec:
       tag: 0.86.0
     url: "https://outline.sshme.in"
     externalPostgresql:
-      host: "10.10.10.3"
+      host: "storage.sshme.in"
       username: "outline_editor"
       existingSecret: "postgres-outline-password"
     externalRedis:
