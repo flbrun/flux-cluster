@@ -3,7 +3,7 @@ kind: ServiceEntry
 metadata:
   name: postgres
   labels:
-    service.istio.io/canonical-name: postgres
+    service.istio.io/canonical-name: storage
 spec:
   hosts: ["storage.sshme.in"]
   exportTo: ["*"]
@@ -19,7 +19,7 @@ kind: ServiceEntry
 metadata:
   name: minio
   labels:
-    service.istio.io/canonical-name: minio
+    service.istio.io/canonical-name: storage
 spec:
   hosts: ["storage.sshme.in"]
   exportTo: ["*"]
