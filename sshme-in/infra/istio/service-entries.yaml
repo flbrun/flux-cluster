@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: storage-postgres
+  name: postgres
 spec:
   hosts: ["storage.sshme.in"]
   exportTo: ["*"]
@@ -15,7 +15,7 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: storage-minio
+  name: minio
 spec:
   hosts: ["storage.sshme.in"]
   exportTo: ["*"]
