@@ -12,8 +12,6 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
-    serviceMonitor:
-      enabled: true
     networkPolicy:
       enabled: false
     postgresql:
@@ -49,3 +47,5 @@ spec:
 
     metrics:
       enabled: true
+      serviceMonitor:
+        enabled: true

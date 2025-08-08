@@ -12,8 +12,10 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
-    serviceMonitor:
+    metrics:
       enabled: true
+      serviceMonitor:
+        enabled: true
     networkPolicy:
       enabled: false
     auth:
