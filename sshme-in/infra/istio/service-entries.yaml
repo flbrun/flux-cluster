@@ -1,10 +1,14 @@
+# POSTGRES
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: postgres
+  name: storage-postgres
+  namespace: istio-system
+  labels:
+    app: storage                              
+    service.istio.io/canonical-name: postgres 
 spec:
-  hosts: ["storage.sshme.in"]
-  exportTo: ["*"]
+  hosts: ["storage.sshme.in"]                  
   location: MESH_EXTERNAL
   resolution: DNS
   ports:
@@ -12,13 +16,17 @@ spec:
     name: tcp-postgres
     protocol: TCP
 ---
+
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: minio
+  name: storage-minio
+  namespace: istio-system
+  labels:
+    app: storage
+    service.istio.io/canonical-name: minio
 spec:
   hosts: ["storage.sshme.in"]
-  exportTo: ["*"]
   location: MESH_EXTERNAL
   resolution: DNS
   ports:
@@ -28,3 +36,4 @@ spec:
   - number: 9001
     name: http-minio-console
     protocol: HTTP
+
