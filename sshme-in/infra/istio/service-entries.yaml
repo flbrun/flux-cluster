@@ -1,8 +1,8 @@
-# POSTGRES
+
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: storage-postgres
+  name: postgres
   namespace: istio-system
   labels:
     app: storage                              
@@ -20,7 +20,7 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: storage-minio
+  name: minio
   namespace: istio-system
   labels:
     app: storage
