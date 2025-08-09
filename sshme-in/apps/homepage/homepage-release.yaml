@@ -24,10 +24,9 @@ spec:
     persistence:
       config:
         enabled: true
-        type: configMap
-        # This must match the name of the ConfigMap created below.
-        # With release name "homepage" and key "config", TrueCharts renders "homepage-config".
-        objectName: homepage-config
+        type: configmap        # <- no PVC; uses the ConfigMap below
+        mountPath: /app/config # <- where Homepage expects its config
+        objectName: config     # <- refers to configmap.config (key name)
 
     configmap:
       config:
@@ -54,6 +53,9 @@ spec:
 
           widgets.yaml: |
             ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/widgets
+
             - search:
                 provider: custom
                 url: https://www.ecosia.org/search?q=
@@ -63,8 +65,14 @@ spec:
 
           services.yaml: |
             ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/services
+
           bookmarks.yaml: |
             ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/bookmarks
+
             - Developer:
                 - Github:
                     - abbr: GH
@@ -78,18 +86,40 @@ spec:
     rbac:
       main:
         rules:
-          - apiGroups: ["gateway.networking.k8s.io"]
-            resources: ["httproutes"]
-            verbs: ["get","list"]
+          - apiGroups:
+              - gateway.networking.k8s.io
+            resources:
+              - httproutes
+            verbs:
+              - get
+              - list
           - apiGroups: [""]
-            resources: ["namespaces","pods","nodes"]
-            verbs: ["get","list"]
-          - apiGroups: ["extensions","networking.k8s.io"]
-            resources: ["ingresses"]
-            verbs: ["get","list"]
-          - apiGroups: ["metrics.k8s.io"]
-            resources: ["nodes","pods"]
-            verbs: ["get","list"]
-          - apiGroups: ["apiextensions.k8s.io"]
-            resources: ["customresourcedefinitions/status"]
-            verbs: ["get"]
+            resources:
+              - namespaces
+              - pods
+              - nodes
+            verbs:
+              - get
+              - list
+          - apiGroups:
+              - extensions
+              - networking.k8s.io
+            resources:
+              - ingresses
+            verbs:
+              - get
+              - list
+          - apiGroups:
+              - metrics.k8s.io
+            resources:
+              - nodes
+              - pods
+            verbs:
+              - get
+              - list
+          - apiGroups:
+              - apiextensions.k8s.io
+            resources:
+              - customresourcedefinitions/status
+            verbs:
+              - get
