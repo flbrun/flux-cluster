@@ -12,11 +12,6 @@ spec:
         name: truecharts
         namespace: flux-system
   values:
-    image:
-      repository: ghcr.io/gethomepage/homepage
-      tag: v1.4.4@sha256:cd8da3c81ede2a072510930defdcf44c7a0473f72a6d5216beea3b13b3093afe
-      pullPolicy: IfNotPresent
-
     persistence:
       config:
         enabled: false
