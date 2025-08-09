@@ -19,9 +19,16 @@ spec:
             main:
               env:
                 HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
+
+    # Mount config without creating a PVC
     persistence:
       config:
-        enabled: false
+        enabled: true
+        type: configMap
+        # This must match the name of the ConfigMap created below.
+        # With release name "homepage" and key "config", TrueCharts renders "homepage-config".
+        objectName: homepage-config
+
     configmap:
       config:
         enabled: true
@@ -44,11 +51,9 @@ spec:
             providers:
               openweathermap: openweathermapapikey
               weatherapi: weatherapiapikey
+
           widgets.yaml: |
             ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/widgets
-
             - search:
                 provider: custom
                 url: https://www.ecosia.org/search?q=
@@ -56,16 +61,10 @@ spec:
                 suggestionUrl: https://ac.ecosia.org/autocomplete?type=list&q=
                 showSearchSuggestions: true
 
-
           services.yaml: |
             ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/services
           bookmarks.yaml: |
             ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/bookmarks
-
             - Developer:
                 - Github:
                     - abbr: GH
@@ -73,55 +72,24 @@ spec:
                 - Flux-Repo:
                     - abbr: GH
                       href: https://github.com/flbrun/flux-cluster
-                      
 
-          #  - Social:
-          #      - Reddit:
-          #          - abbr: RE
-          #            href: https://reddit.com/
-
-          #  - Entertainment:
-          #      - YouTube:
-          #          - abbr: YT
-          #            href: https://youtube.com/
     forceConfigFromValues: false
+
     rbac:
       main:
         rules:
-          - apiGroups:
-              - gateway.networking.k8s.io
-            resources:
-              - httproutes
-            verbs:
-              - get
-              - list
+          - apiGroups: ["gateway.networking.k8s.io"]
+            resources: ["httproutes"]
+            verbs: ["get","list"]
           - apiGroups: [""]
-            resources:
-              - namespaces
-              - pods
-              - nodes
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - extensions
-              - networking.k8s.io
-            resources:
-              - ingresses
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - metrics.k8s.io
-            resources:
-              - nodes
-              - pods
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - apiextensions.k8s.io
-            resources:
-              - customresourcedefinitions/status
-            verbs:
-              - get
+            resources: ["namespaces","pods","nodes"]
+            verbs: ["get","list"]
+          - apiGroups: ["extensions","networking.k8s.io"]
+            resources: ["ingresses"]
+            verbs: ["get","list"]
+          - apiGroups: ["metrics.k8s.io"]
+            resources: ["nodes","pods"]
+            verbs: ["get","list"]
+          - apiGroups: ["apiextensions.k8s.io"]
+            resources: ["customresourcedefinitions/status"]
+            verbs: ["get"]
