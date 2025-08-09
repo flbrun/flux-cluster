@@ -12,16 +12,35 @@ spec:
         name: truecharts
         namespace: flux-system
   values:
+    image:
+      repository: ghcr.io/gethomepage/homepage
+      tag: v1.4.4@sha256:cd8da3c81ede2a072510930defdcf44c7a0473f72a6d5216beea3b13b3093afe
+      pullPolicy: IfNotPresent
+
+    # Run WITHOUT persistence (no PVC)
+    persistence:
+      config:
+        enabled: false
+
+    # Mount config files directly into /app/config (read-only)
+    forceConfigFromValues: true
+
     workload:
       main:
         podSpec:
+          automountServiceAccountToken: true
+          # Disable the copy/init since we're not using /dummy-config
+          initContainers:
+            init-config:
+              enabled: false
           containers:
             main:
               env:
                 HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
-    persistence:
-      config:
-        enabled: true
+                # keep logs off /app/config
+                LOG_TARGETS: "stdout"
+
+    # Your config lives in values → rendered to a ConfigMap → mounted at /app/config/*
     configmap:
       config:
         enabled: true
@@ -33,22 +52,19 @@ spec:
             gateway: true
           settings.yaml: |
             ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/settings
             title: SSHM3-1N
-            background: 
-              image: https://images.unsplash.com/photo-1508144753681-9986d4df99b3?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+            background:
+              image: https://images.unsplash.com/photo-1508144753681-9986d4df99b3?q=80&w=3540&auto=format&fit=crop
               saturate: 50
               brightness: 50
-
+            # ensure nothing tries to write under /app/config
+            logpath: /tmp
             providers:
               openweathermap: openweathermapapikey
               weatherapi: weatherapiapikey
+
           widgets.yaml: |
             ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/widgets
-
             - search:
                 provider: custom
                 url: https://www.ecosia.org/search?q=
@@ -56,16 +72,12 @@ spec:
                 suggestionUrl: https://ac.ecosia.org/autocomplete?type=list&q=
                 showSearchSuggestions: true
 
-
           services.yaml: |
             ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/services
+            # your services go here
+
           bookmarks.yaml: |
             ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/bookmarks
-
             - Developer:
                 - Github:
                     - abbr: GH
@@ -73,18 +85,8 @@ spec:
                 - Flux-Repo:
                     - abbr: GH
                       href: https://github.com/flbrun/flux-cluster
-                      
 
-          #  - Social:
-          #      - Reddit:
-          #          - abbr: RE
-          #            href: https://reddit.com/
-
-          #  - Entertainment:
-          #      - YouTube:
-          #          - abbr: YT
-          #            href: https://youtube.com/
-    forceConfigFromValues: false
+    # (unchanged) RBAC rules for discovery/widgets
     rbac:
       main:
         rules:
@@ -92,36 +94,16 @@ spec:
               - gateway.networking.k8s.io
             resources:
               - httproutes
-            verbs:
-              - get
-              - list
+            verbs: ["get","list"]
           - apiGroups: [""]
-            resources:
-              - namespaces
-              - pods
-              - nodes
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - extensions
-              - networking.k8s.io
-            resources:
-              - ingresses
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - metrics.k8s.io
-            resources:
-              - nodes
-              - pods
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - apiextensions.k8s.io
-            resources:
-              - customresourcedefinitions/status
-            verbs:
-              - get
+            resources: ["namespaces","pods","nodes"]
+            verbs: ["get","list"]
+          - apiGroups: ["extensions","networking.k8s.io"]
+            resources: ["ingresses"]
+            verbs: ["get","list"]
+          - apiGroups: ["metrics.k8s.io"]
+            resources: ["nodes","pods"]
+            verbs: ["get","list"]
+          - apiGroups: ["apiextensions.k8s.io"]
+            resources: ["customresourcedefinitions/status"]
+            verbs: ["get"]
