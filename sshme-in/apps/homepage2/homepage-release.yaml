@@ -12,6 +12,9 @@ spec:
         name: homepage
         namespace: flux-system
   values:
+    extraEnv:
+      - name: HOMEPAGE_ALLOWED_HOSTS
+        value: home2.sshme.in
     podAnnotations:
       reloader.stakater.com/auto: "true"
     volumes:
