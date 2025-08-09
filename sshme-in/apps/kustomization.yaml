@@ -6,7 +6,7 @@ resources:
   - coder
   - grocy
   - headlamp
-  - homepage
+  #- homepage
   - homepage2
   - keycloak
   - outline
