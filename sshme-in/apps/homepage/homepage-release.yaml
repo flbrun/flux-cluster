@@ -9,124 +9,51 @@ spec:
       chart: homepage
       sourceRef:
         kind: HelmRepository
-        name: truecharts
+        name: homepage
         namespace: flux-system
   values:
-    workload:
-      main:
-        podSpec:
-          containers:
-            main:
-              env:
-                HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
-    persistence:
-      config:
-        enabled: true
-        mountPath: /app/config
-        targetSelector:
-          main:
-            main: {}
-            init-config: {}
-    configmap:
-      config:
-        enabled: true
-        data:
-          custom.js: ""
-          custom.css: ""
-          kubernetes.yaml: |
-            mode: cluster
-            gateway: true
-          settings.yaml: |
-            ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/settings
-            title: SSHM3-1N
-            background: 
-              image: https://images.unsplash.com/photo-1508144753681-9986d4df99b3?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-              saturate: 50
-              brightness: 50
-
-            providers:
-              openweathermap: openweathermapapikey
-              weatherapi: weatherapiapikey
-          widgets.yaml: |
-            ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/widgets
-
-            - search:
-                provider: custom
-                url: https://www.ecosia.org/search?q=
-                target: _blank
-                suggestionUrl: https://ac.ecosia.org/autocomplete?type=list&q=
-                showSearchSuggestions: true
-
-
-          services.yaml: |
-            ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/services
-          bookmarks.yaml: |
-            ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/bookmarks
-
-            - Developer:
-                - Github:
-                    - abbr: GH
-                      href: https://github.com/
-                - Flux-Repo:
-                    - abbr: GH
-                      href: https://github.com/flbrun/flux-cluster
-                      
-
-          #  - Social:
-          #      - Reddit:
-          #          - abbr: RE
-          #            href: https://reddit.com/
-
-          #  - Entertainment:
-          #      - YouTube:
-          #          - abbr: YT
-          #            href: https://youtube.com/
-    forceConfigFromValues: false
-    rbac:
-      main:
-        rules:
-          - apiGroups:
-              - gateway.networking.k8s.io
-            resources:
-              - httproutes
-            verbs:
-              - get
-              - list
-          - apiGroups: [""]
-            resources:
-              - namespaces
-              - pods
-              - nodes
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - extensions
-              - networking.k8s.io
-            resources:
-              - ingresses
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - metrics.k8s.io
-            resources:
-              - nodes
-              - pods
-            verbs:
-              - get
-              - list
-          - apiGroups:
-              - apiextensions.k8s.io
-            resources:
-              - customresourcedefinitions/status
-            verbs:
-              - get
+    extraEnv:
+      - name: HOMEPAGE_ALLOWED_HOSTS
+        value: home.sshme.in
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+    serviceAccount:
+      create: true
+      name: homepage 
+    volumes:
+          - name: homepage-configs
+            configMap:
+              name: homepage-configs
+    volumeMounts:
+      - name: homepage-configs
+        mountPath: /app/config/settings.yaml
+        subPath: settings.yaml
+        readOnly: true
+      - name: homepage-configs
+        mountPath: /app/config/bookmarks.yaml
+        subPath: bookmarks.yaml
+        readOnly: true
+      - name: homepage-configs
+        mountPath: /app/config/services.yaml
+        subPath: services.yaml
+        readOnly: true
+      - name: homepage-configs
+        mountPath: /app/config/widgets.yaml
+        subPath: widgets.yaml
+        readOnly: true
+      - name: homepage-configs
+        mountPath: /app/config/kubernetes.yaml
+        subPath: kubernetes.yaml
+        readOnly: true
+      - name: homepage-configs
+        mountPath: /app/config/docker.yaml
+        subPath: docker.yaml
+        readOnly: true
+      - name: homepage-configs
+        mountPath: /app/config/custom.css
+        subPath: custom.css
+        readOnly: true
+      - name: homepage-configs
+        mountPath: /app/config/custom.js
+        subPath: custom.js
+        readOnly: true

@@ -4,4 +4,6 @@ namespace: apps
 resources:
   - homepage-release.yaml
   - route.yaml
+  - configmap.yaml
+  - rbac.yaml
 
