@@ -14,7 +14,7 @@ spec:
   values:
     extraEnv:
       - name: HOMEPAGE_ALLOWED_HOSTS
-        value: home2.sshme.in
+        value: home.sshme.in
     podAnnotations:
       reloader.stakater.com/auto: "true"
     serviceAccount:
