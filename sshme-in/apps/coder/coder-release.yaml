@@ -13,6 +13,10 @@ spec:
         namespace: flux-system
   values:
     coder:
+      readinessProbe:
+        initialDelaySeconds: 5
+      livenessProbe:
+        initialDelaySeconds: 60
       service:
         type: ClusterIP
       env:
