@@ -19,14 +19,9 @@ spec:
             main:
               env:
                 HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
-                LOG_TARGETS: "stdout"   # don't write logs to /app/config
-
     persistence:
       config:
-        enabled: false
-
-    forceConfigFromValues: true
-
+        enabled: true
     configmap:
       config:
         enabled: true
@@ -89,6 +84,7 @@ spec:
           #      - YouTube:
           #          - abbr: YT
           #            href: https://youtube.com/
+    forceConfigFromValues: false
     rbac:
       main:
         rules:
