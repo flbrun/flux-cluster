@@ -20,6 +20,9 @@ spec:
       service:
         type: ClusterIP
       env:
+      env:
+        - name: CODER_ACCESS_URL
+          value: "https://code.sshme.in"
         - name: CODER_AUTH_PROVIDER
           value: "oidc"
         - name: CODER_OIDC_ISSUER_URL
