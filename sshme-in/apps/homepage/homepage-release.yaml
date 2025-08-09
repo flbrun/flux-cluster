@@ -21,7 +21,7 @@ spec:
                 HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
     persistence:
       config:
-        enabled: true
+        enabled: false
     configmap:
       config:
         enabled: true
