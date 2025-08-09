@@ -15,4 +15,4 @@ spec:
             value: /
       backendRefs:
         - name: homepage2
-          port: 10352
+          port: 80
