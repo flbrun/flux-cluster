@@ -12,27 +12,57 @@ spec:
         name: truecharts
         namespace: flux-system
   values:
-    persistence:
-      config:
-        enabled: false
+    image:
 
-    forceConfigFromValues: true
+    # No PVCs anywhere
+    persistence:
+      # Writable runtime dir (tmpfs-like). This is NOT persistent.
+      config:
+        enabled: true
+        type: emptyDir
+        mountPath: /app/config
+        targetSelector:
+          main:
+            main: {}
+            copy-config: {}
+      # Mount your rendered ConfigMap read-only at /seed/*
+      seed:
+        enabled: true
+        type: configmap
+        objectName: config
+        mountPath: /seed
+        readOnly: true
+        targetSelector:
+          main:
+            copy-config: {}
+
+    # Do NOT let the chart mount files directly into /app/config (we copy ourselves)
+    forceConfigFromValues: false
 
     workload:
       main:
         podSpec:
           automountServiceAccountToken: true
           initContainers:
+            # Disable the chart's init (if it exists) and use our own simple copier
             init-config:
               enabled: false
+            copy-config:
+              image: busybox:1.36
+              command:
+                - sh
+                - -ce
+                - |
+                  mkdir -p /app/config
+                  cp -a /seed/. /app/config/
           containers:
             main:
               env:
                 HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
-                # keep logs off /app/config
+                # keep writes off /app/config
                 LOG_TARGETS: "stdout"
 
-    # Your config lives in values → rendered to a ConfigMap → mounted at /app/config/*
+    # Your config lives in values -> rendered into a single ConfigMap named "config"
     configmap:
       config:
         enabled: true
@@ -49,12 +79,11 @@ spec:
               image: https://images.unsplash.com/photo-1508144753681-9986d4df99b3?q=80&w=3540&auto=format&fit=crop
               saturate: 50
               brightness: 50
-            # ensure nothing tries to write under /app/config
+            # ensure runtime writes go somewhere writable
             logpath: /tmp
             providers:
               openweathermap: openweathermapapikey
               weatherapi: weatherapiapikey
-
           widgets.yaml: |
             ---
             - search:
@@ -63,11 +92,8 @@ spec:
                 target: _blank
                 suggestionUrl: https://ac.ecosia.org/autocomplete?type=list&q=
                 showSearchSuggestions: true
-
           services.yaml: |
             ---
-            # your services go here
-
           bookmarks.yaml: |
             ---
             - Developer:
@@ -78,14 +104,11 @@ spec:
                     - abbr: GH
                       href: https://github.com/flbrun/flux-cluster
 
-    # (unchanged) RBAC rules for discovery/widgets
     rbac:
       main:
         rules:
-          - apiGroups:
-              - gateway.networking.k8s.io
-            resources:
-              - httproutes
+          - apiGroups: ["gateway.networking.k8s.io"]
+            resources: ["httproutes"]
             verbs: ["get","list"]
           - apiGroups: [""]
             resources: ["namespaces","pods","nodes"]
