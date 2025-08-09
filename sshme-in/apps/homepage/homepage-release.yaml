@@ -19,14 +19,16 @@ spec:
             main:
               env:
                 HOMEPAGE_ALLOWED_HOSTS: "home.sshme.in"
+                # Prevent writing logs to /app/config/logs (ConfigMap is read-only)
+                LOG_TARGETS: "stdout"
 
     # Mount config without creating a PVC
     persistence:
       config:
         enabled: true
-        type: configmap        # <- no PVC; uses the ConfigMap below
-        mountPath: /app/config # <- where Homepage expects its config
-        objectName: config     # <- refers to configmap.config (key name)
+        type: configmap
+        mountPath: /app/config
+        objectName: config
 
     configmap:
       config:
@@ -42,10 +44,13 @@ spec:
             # For configuration options and examples, please see:
             # https://gethomepage.dev/latest/configs/settings
             title: SSHM3-1N
-            background: 
+            background:
               image: https://images.unsplash.com/photo-1508144753681-9986d4df99b3?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
               saturate: 50
               brightness: 50
+
+            # Write logs to a writable path instead of /app/config/logs
+            logpath: /tmp
 
             providers:
               openweathermap: openweathermapapikey
