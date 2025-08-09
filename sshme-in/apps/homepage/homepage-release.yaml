@@ -17,19 +17,16 @@ spec:
       tag: v1.4.4@sha256:cd8da3c81ede2a072510930defdcf44c7a0473f72a6d5216beea3b13b3093afe
       pullPolicy: IfNotPresent
 
-    # Run WITHOUT persistence (no PVC)
     persistence:
       config:
         enabled: false
 
-    # Mount config files directly into /app/config (read-only)
     forceConfigFromValues: true
 
     workload:
       main:
         podSpec:
           automountServiceAccountToken: true
-          # Disable the copy/init since we're not using /dummy-config
           initContainers:
             init-config:
               enabled: false
