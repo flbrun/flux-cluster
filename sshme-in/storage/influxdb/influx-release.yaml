@@ -12,6 +12,8 @@ spec:
         name: influxdata
         namespace: flux-system
   values:
+    image:
+      tag: "2.7.12-alpine"
     env:
       - name: INFLUXDB_DB
         value: opnsense
