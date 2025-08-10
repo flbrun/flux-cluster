@@ -14,6 +14,11 @@ spec:
         name: grafana
         namespace: flux-system
   values:
+    extraSecretMounts:
+      - name: grafana-influx-password
+        secretName: grafana-influx-password
+        mountPath: /etc/grafana-secrets
+        readOnly: true
     envFromSecret: grafana-oidc-secret
     grafana.ini:
       server:
@@ -40,6 +45,16 @@ spec:
             access: proxy
             url:  "http://prometheus-kube-prometheus-prometheus:9090"
             isDefault: true
+          - name: influx
+            type: influxdb
+            access: proxy
+            url: "http://influx-influxdb.storage.svc.cluster.local:8086"
+            database: opnsense
+            user: grafana
+            jsonData:
+              httpMode: POST
+            secureJsonData:
+              password: $__file{/etc/grafana-secrets/influx-password}
     sidecar:
       dashboards:
         enabled: true
