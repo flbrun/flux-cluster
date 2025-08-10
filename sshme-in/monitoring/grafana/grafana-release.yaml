@@ -50,7 +50,7 @@ spec:
             access: proxy
             url: "http://influx-influxdb.storage.svc.cluster.local:8086"
             database: opnsense
-            user: grafana
+            user: opensense
             jsonData:
               httpMode: POST
             secureJsonData:
