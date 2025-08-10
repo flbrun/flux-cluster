@@ -11,3 +11,21 @@ spec:
         kind: HelmRepository
         name: influxdata
         namespace: flux-system
+  values:
+    env:
+      - name: INFLUXDB_DB
+        value: opnsense
+      - name: INFLUXDB_HTTP_AUTH_ENABLED
+        value: "true"
+
+    config:
+      http:
+        enabled: true
+        bind-address: ":8086"
+        flux-enabled: true
+        auth-enabled: true
+
+    setDefaultUser:
+      enabled: true
+      user:
+        existingSecret: influxdb-auth
