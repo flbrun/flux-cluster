@@ -3,5 +3,7 @@ kind: Kustomization
 namespace: storage
 resources:
   - namespace.yaml
-  - redis
   - auth-policy.yaml
+  - redis
+  - influxdb
+  
