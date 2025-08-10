@@ -12,6 +12,8 @@ spec:
         name: influxdata
         namespace: flux-system
   values:
+    nodeSelector:
+      kubernetes.io/hostname: nuc-node0
     env:
       - name: INFLUXDB_DB
         value: opnsense
