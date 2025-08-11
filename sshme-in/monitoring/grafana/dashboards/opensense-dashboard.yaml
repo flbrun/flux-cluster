@@ -578,7 +578,7 @@ data:
                 "condition": "AND",
                 "key": "interface",
                 "operator": "=~",
-                "value": "/^$wan_interface$/"
+                "value": "/^pppoe0/"
               }
             ]
           }
@@ -704,7 +704,7 @@ data:
                 "condition": "AND",
                 "key": "interface",
                 "operator": "=~",
-                "value": "/^$wan_interface$/"
+                "value": "/^pppoe0/"
               }
             ]
           }
