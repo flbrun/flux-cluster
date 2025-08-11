@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kube-state-metrics
+  name: opensense-metrics
   labels:
     grafana_dashboard: "1"
 data:
