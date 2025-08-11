@@ -16,5 +16,3 @@ spec:
       backendRefs:
         - name: influx-influxdb
           port: 8086
-        - name: influx-influxdb
-          port: 8088
