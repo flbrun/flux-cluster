@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   #- keycloak-dashboards.yaml
   - kube-state-metrics.yaml
-  - opensense-dashboard.yaml
+  #- opensense-dashboard.yaml
