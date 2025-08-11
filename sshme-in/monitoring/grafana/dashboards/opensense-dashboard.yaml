@@ -52,7 +52,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -114,7 +114,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -20s)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"system\" and\r\n    r._field == \"n_users\"\r\n  )\r\n  |> keep(columns: [\"_value\"])\r\n  |> last()",
                 "refId": "A"
@@ -126,7 +126,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -187,7 +187,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -20s)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"cpu\" and\r\n    r._field == \"usage_idle\" and\r\n    r.cpu == \"cpu-total\"\r\n  )\r\n  |> map(fn: (r) => ({\r\n        r with\r\n        _value: r._value * -1.0 + 100.0\r\n      })\r\n    )\r\n  |> keep(columns: [\"_value\"])\r\n  |> last()",
                 "refId": "A"
@@ -198,7 +198,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -289,7 +289,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"cpu\" and\r\n    r._field == \"usage_idle\")\r\n  |> map(fn: (r) => ({\r\n        r with\r\n        _value: r._value * -1.0 + 100.0\r\n      })\r\n    )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> drop(columns: [\"host\"])",
                 "refId": "A"
@@ -325,7 +325,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -381,7 +381,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30s)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"processes\" and\r\n    r._field =~ /running|idle|sleeping|wait|blocked|zombies/\r\n  )\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))\r\n  |> last()",
                 "refId": "A"
@@ -431,7 +431,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -522,7 +522,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"system\" and\r\n    r._field =~ /load1|load5|load15/\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -534,7 +534,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -599,7 +599,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -20s)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"system\" and\r\n    r._field == \"uptime_format\"\r\n  )\r\n  |> keep(columns: [\"_value\"])\r\n  |> last()\r\n",
                 "refId": "A"
@@ -610,7 +610,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -667,7 +667,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30s)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"pf\" and\r\n    r._field =~ /match|state-mismatch|state-insert/\r\n  )\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))\r\n  |> last()",
                 "refId": "A"
@@ -711,7 +711,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -804,7 +804,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "hide": false,
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.device != \"devfs\" and\r\n    r.device =~ /^${Disk:regex}$/ and\r\n    r._measurement == \"disk\" and\r\n    r._field == \"used_percent\" \r\n  )",
@@ -824,7 +824,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -915,7 +915,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"mem\" and\r\n    r._field == \"used_percent\"\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))\r\n  ",
                 "refId": "A"
@@ -938,7 +938,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -1027,7 +1027,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.sensor =~ /^${Sensor:regex}$/ and\r\n    r._measurement == \"temperature\" and\r\n    r._field == \"degrees\"\r\n  )\r\n  |> aggregateWindow(every:10s, fn: last)",
                 "refId": "A"
@@ -1689,7 +1689,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -1780,7 +1780,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.gateway_name =~ /^${Gateway:regex}$/ and\r\n    r._measurement == \"gateways\" and\r\n    r._field == \"delay\"\r\n  )",
                 "refId": "A"
@@ -1800,7 +1800,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -1906,7 +1906,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30s)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"interface\"\r\n  )\r\n  |> last()\r\n  |> group()\r\n  |> keep(columns: [\"friendlyname\", \"ip4_address\", \"ip4_subnet\", \"mac_address\", \"name\", \"_value\"])\r\n  |> sort(columns:[\"name\"])",
                 "refId": "A"
@@ -1941,7 +1941,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -2032,7 +2032,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.gateway_name =~ /^${Gateway:regex}$/ and\r\n    r._measurement == \"gateways\" and\r\n    r._field == \"loss\"\r\n  )",
                 "refId": "A"
@@ -2052,7 +2052,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -2128,7 +2128,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30s)\r\n  |> filter(fn: (r) =>\r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"gateways\" and\r\n    r._field =~ /gwdescr|source|monitor|status|gateway_name|interface/\r\n    )\r\n  |> last()\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -2189,7 +2189,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -2274,7 +2274,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30s)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.name =~ /^${WAN:regex}$/ and\r\n    r._measurement == \"interface\" and\r\n    r._field == \"status\")\r\n  |> group()\r\n  |> last()\r\n  |> keep(columns: [\"friendlyname\", \"ip4_address\", \"name\", \"ip4_subnet\" \"mac_address\", \"_value\"])",
                 "refId": "A"
@@ -2309,7 +2309,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "description": "",
             "fieldConfig": {
@@ -2400,7 +2400,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.interface =~ /^${WAN:regex}$/ and \r\n    r._measurement == \"net\" and\r\n    r._field =~ /bytes_recv|bytes_sent/\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> derivative(unit:1s)\r\n  |> map(fn: (r) => ({\r\n      r with\r\n      _value: r._value * 8.0\r\n    })\r\n  )\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -2432,7 +2432,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -2495,7 +2495,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30s)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.interface =~ /^${WAN:regex}$/ and\r\n    r._measurement == \"net\" and\r\n    r._field =~ /bytes_recv|bytes_sent/\r\n  )\r\n  |> derivative(unit:1s)\r\n  |> map(fn: (r) => ({\r\n      r with\r\n      _value: r._value * 8.0\r\n    })\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))\r\n  |> last()",
                 "refId": "A"
@@ -2528,7 +2528,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -2592,7 +2592,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30d)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.interface =~ /^${WAN:regex}$/ and\r\n    r._measurement == \"net\" and\r\n    r._field =~ /bytes_recv|bytes_sent/\r\n  )\r\n  |> aggregateWindow(every: 1h, fn: last)\r\n  |> difference(nonNegative: true)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -2624,7 +2624,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -2715,7 +2715,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.interface =~ /^${WAN:regex}$/ and \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"net\" and\r\n    r._field =~ /packets_recv|packets_sent/\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> derivative(unit:1s)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -2761,7 +2761,7 @@ data:
           {
             "datasource": {
               "type": "influxdb",
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -2845,7 +2845,7 @@ data:
               {
                 "datasource": {
                   "type": "influxdb",
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30s)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.name =~ /^${LAN:regex}$/ and\r\n    r._measurement == \"interface\" and\r\n    r._field == \"status\")\r\n  |> group()\r\n  |> last()\r\n  |> keep(columns: [\"friendlyname\", \"ip4_address\", \"name\", \"ip4_subnet\" \"mac_address\", \"_value\"])",
                 "refId": "A"
@@ -2880,7 +2880,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "description": "",
             "fieldConfig": {
@@ -2971,7 +2971,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.interface =~ /^${LAN:regex}$/ and \r\n    r._measurement == \"net\" and\r\n    r._field =~ /bytes_recv|bytes_sent/\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> derivative(unit:1s)\r\n  |> map(fn: (r) => ({\r\n      r with\r\n      _value: r._value * 8.0\r\n    })\r\n  )\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -3006,7 +3006,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -3069,7 +3069,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -1m)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.interface =~ /^${LAN:regex}$/ and\r\n    r._measurement == \"net\" and\r\n    r._field =~ /bytes_recv|bytes_sent/\r\n  )\r\n  |> derivative(unit:1s)\r\n  |> map(fn: (r) => ({\r\n      r with\r\n      _value: r._value * 8.0\r\n    })\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))\r\n  |> last()",
                 "refId": "A"
@@ -3106,7 +3106,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -3170,7 +3170,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: -30d)\r\n  |> filter(fn: (r) => \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r.interface =~ /^${LAN:regex}$/ and\r\n    r._measurement == \"net\" and\r\n    r._field =~ /bytes_recv|bytes_sent/\r\n  )\r\n  |> aggregateWindow(every: 1h, fn: last)\r\n  |> difference(nonNegative: true)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -3206,7 +3206,7 @@ data:
           },
           {
             "datasource": {
-              "uid": "${dataSource}"
+              "uid": "influx"
             },
             "fieldConfig": {
               "defaults": {
@@ -3318,7 +3318,7 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "uid": "${dataSource}"
+                  "uid": "influx"
                 },
                 "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) =>\r\n    r.interface =~ /^${LAN:regex}$/ and \r\n    r.host =~ /^${Host:regex}$/ and\r\n    r._measurement == \"net\" and\r\n    r._field =~ /packets_recv|packets_sent/\r\n  )\r\n  |> aggregateWindow(every: 10s, fn: last)\r\n  |> derivative(unit:1s)\r\n  |> map(fn: (r) => ({_value:r._value, _time:r._time, _field:r._field}))",
                 "refId": "A"
@@ -3393,7 +3393,7 @@ data:
                 ]
               },
               "datasource": {
-                "uid": "${dataSource}"
+                "uid": "influx"
               },
               "definition": "from(bucket: v.defaultBucket)\r\n|> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n|> filter(fn:(r) => r._measurement == \"pf\")\r\n|> keyValues(keyColumns: [\"host\"])\r\n|> group()\r\n|> keep(columns: [\"host\"])\r\n|> distinct(column: \"host\")",
               "includeAll": true,
@@ -3412,7 +3412,7 @@ data:
                 "value": "$__all"
               },
               "datasource": {
-                "uid": "${dataSource}"
+                "uid": "influx"
               },
               "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn:(r) => r._measurement == \"disk\" and\r\n  r.host =~ /^${Host:regex}$/)\r\n  |> keyValues(keyColumns: [\"device\"])\r\n  |> group()\r\n  |> keep(columns: [\"device\"])\r\n  |> distinct(column: \"device\")",
               "includeAll": true,
@@ -3429,7 +3429,7 @@ data:
                 "value": "$__all"
               },
               "datasource": {
-                "uid": "${dataSource}"
+                "uid": "influx"
               },
               "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn:(r) => r._measurement == \"temperature\" and\r\n    r.host =~ /^${Host:regex}$/)\r\n  |> keyValues(keyColumns: [\"sensor\"])\r\n  |> group()\r\n  |> keep(columns: [\"sensor\"])\r\n  |> distinct(column: \"sensor\")",
               "includeAll": true,
@@ -3448,7 +3448,7 @@ data:
                 ]
               },
               "datasource": {
-                "uid": "${dataSource}"
+                "uid": "influx"
               },
               "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => \r\n    r._measurement == \"interface\"\r\n  )\r\n  |> keyValues(keyColumns: [\"name\"])\r\n  |> group()\r\n  |> keep(columns: [\"name\"])\r\n  |> sort(columns: [\"name\"])\r\n",
               "includeAll": true,
@@ -3468,7 +3468,7 @@ data:
                 ]
               },
               "datasource": {
-                "uid": "${dataSource}"
+                "uid": "influx"
               },
               "definition": "from(bucket: v.defaultBucket)\r\n|> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n|> filter(fn:(r) => r._measurement == \"gateways\" and\r\n  r.host =~ /^${Host:regex}$/)\r\n|> keyValues(keyColumns: [\"gateway_name\"])\r\n|> group()\r\n|> keep(columns: [\"gateway_name\"])\r\n|> distinct(column: \"gateway_name\")",
               "includeAll": true,
@@ -3513,7 +3513,7 @@ data:
               },
               "datasource": {
                 "type": "influxdb",
-                "uid": "${dataSource}"
+                "uid": "influx"
               },
               "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"interface\")\r\n  |> last()\r\n  |> group(columns: [\"tag\"])\r\n  |> keep(columns: [\"name\"])",
               "includeAll": true,
