@@ -1,27 +1,27 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: kresus-route
+  name: actual-route
   annotations:
-    gethomepage.dev/href: "https://kresus.sshme.in"
+    gethomepage.dev/href: "https://actual.sshme.in"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Finance App
     gethomepage.dev/group: Apps
-    gethomepage.dev/icon: https://www.getoutline.com/images/logo.svg
-    gethomepage.dev/app: kresus-route
-    gethomepage.dev/name: Kresus
+    gethomepage.dev/icon: https://artifacthub.io/image/33d0bf63-15b0-462a-8d6f-ce7f282bb147@2x
+    gethomepage.dev/app: actual-route
+    gethomepage.dev/name: Actual
     gethomepage.dev/pod-selector: ""
 spec:
   parentRefs:
   - name: default-gateway
     namespace: istio-ingress
   hostnames:
-  - "kresus.sshme.in"
+  - "budget.sshme.in"
   rules:
   - matches:
     - path:
         type: PathPrefix
         value: /
     backendRefs:
-    - name: kresus
-      port: 9876
+    - name: actual
+      port: 5006
