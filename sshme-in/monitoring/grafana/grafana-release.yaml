@@ -59,7 +59,7 @@ spec:
               httpMode: POST
             secureJsonData:
               password: $__file{/etc/grafana-secrets/influx-password}
-          - name: InfluxDB v2
+          - name: InfluxV2
             type: influxdb
             access: proxy
             url: "http://influxv2-influxdb2.storage.svc.cluster.local:80"
