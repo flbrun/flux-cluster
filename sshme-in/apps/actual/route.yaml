@@ -3,7 +3,7 @@ kind: HTTPRoute
 metadata:
   name: actual-route
   annotations:
-    gethomepage.dev/href: "https://actual.sshme.in"
+    gethomepage.dev/href: "https://budget.sshme.in"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Finance App
     gethomepage.dev/group: Apps
