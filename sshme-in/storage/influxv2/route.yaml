@@ -14,5 +14,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: influxv2-influxdb
-          port: 8086
+        - name: influxv2-influxdb2
+          port: 80

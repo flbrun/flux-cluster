@@ -19,6 +19,10 @@ spec:
         secretName: grafana-influx-password
         mountPath: /etc/grafana-secrets
         readOnly: true
+      - name: influx-token
+        secretName: influx-v2-token-secret
+        mountPath: /etc/grafana-secrets
+        readOnly: true
     envFromSecret: grafana-oidc-secret
     grafana.ini:
       server:
@@ -55,6 +59,18 @@ spec:
               httpMode: POST
             secureJsonData:
               password: $__file{/etc/grafana-secrets/influx-password}
+          - name: InfluxDB v2
+            type: influxdb
+            access: proxy
+            url: "http://influxv2-influxdb2.storage.svc.cluster.local:80"
+            jsonData:
+              version: Flux
+              organization: "influxdata"
+              defaultBucket: "default"
+              tlsSkipVerify: false
+              timeInterval: "10s"
+            secureJsonData:
+              password: $__file{/etc/grafana-secrets/influx-token}
     sidecar:
       dashboards:
         enabled: true
