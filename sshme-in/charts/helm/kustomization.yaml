@@ -3,16 +3,16 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - istio.yaml
-  - nextcloud.yaml
+  #- nextcloud.yaml
   - jetstack.yaml
   - community-charts.yaml
   - headlamp.yaml
-  - external-secrets.yaml
+  #- external-secrets.yaml
   - prometheus-community.yaml
   - grafana.yaml
   - coder.yaml
-  - k8s-at-home.yaml
-  - fairwinds.yaml
+  #- k8s-at-home.yaml
+  #- fairwinds.yaml
   - kiali.yaml
   - influx.yaml
   - rm3l.yaml
