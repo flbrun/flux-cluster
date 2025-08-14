@@ -26,7 +26,6 @@ spec:
           clientSecretKey: "clientSecret"
     persistence:
       enabled: true
-      existingClaim: actualbudget-volume
     strategy:
       type: Recreate
     files:
