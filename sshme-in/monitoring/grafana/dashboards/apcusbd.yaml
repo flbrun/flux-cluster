@@ -1,0 +1,2974 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apc-dashboard
+  labels:
+    grafana_dashboard: "1"
+data:
+  apc-dashboard.json: |
+        {
+          "__inputs": [],
+          "__requires": [
+            {
+              "type": "panel",
+              "id": "gauge",
+              "name": "Gauge",
+              "version": ""
+            },
+            {
+              "type": "grafana",
+              "id": "grafana",
+              "name": "Grafana",
+              "version": "7.0.5"
+            },
+            {
+              "type": "panel",
+              "id": "graph",
+              "name": "Graph",
+              "version": ""
+            },
+            {
+              "type": "datasource",
+              "id": "influxdb",
+              "name": "InfluxDB",
+              "version": "1.0.0"
+            },
+            {
+              "type": "panel",
+              "id": "stat",
+              "name": "Stat",
+              "version": ""
+            }
+          ],
+          "annotations": {
+            "list": [
+              {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+              }
+            ]
+          },
+          "description": "Inspiration taken from https://grafana.com/grafana/dashboards/10835 - Thank you, anthonysomerset.  I've corrected some math errors,  and updated it to work with multiple  UPSs in the same database.",
+          "editable": true,
+          "gnetId": 12625,
+          "graphTooltip": 0,
+          "id": null,
+          "iteration": 1594414650282,
+          "links": [],
+          "panels": [
+            {
+              "aliasColors": {
+                "APC.mean": "rgb(0, 218, 255)",
+                "UPS Load": "#70dbed"
+              },
+              "bars": false,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "$upsdatasource",
+              "decimals": null,
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {}
+                },
+                "overrides": []
+              },
+              "fill": 4,
+              "fillGradient": 0,
+              "gridPos": {
+                "h": 6,
+                "w": 11,
+                "x": 0,
+                "y": 0
+              },
+              "hiddenSeries": false,
+              "id": 2,
+              "legend": {
+                "alignAsTable": false,
+                "avg": true,
+                "current": false,
+                "hideEmpty": false,
+                "hideZero": false,
+                "max": true,
+                "min": true,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": true
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "connected",
+              "options": {
+                "dataLinks": []
+              },
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "repeat": null,
+              "seriesOverrides": [
+                {
+                  "$$hashKey": "object:12527",
+                  "alias": "Watts",
+                  "yaxis": 2
+                }
+              ],
+              "spaceLength": 10,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "alias": "UPS Load",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": "1d",
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "UPS Load %",
+              "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "$$hashKey": "object:7473",
+                  "decimals": null,
+                  "format": "percent",
+                  "label": "Percent",
+                  "logBase": 1,
+                  "max": null,
+                  "min": "0",
+                  "show": true
+                },
+                {
+                  "$$hashKey": "object:7474",
+                  "format": "watt",
+                  "label": "Watts",
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": false
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "#d44a3a",
+                        "value": null
+                      },
+                      {
+                        "color": "rgba(237, 129, 40, 0.89)",
+                        "value": 20
+                      },
+                      {
+                        "color": "#299c46",
+                        "value": 50
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 4,
+                "w": 3,
+                "x": 11,
+                "y": 0
+              },
+              "hideTimeOverride": true,
+              "id": 4,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "fieldOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ]
+                },
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showThresholdLabels": true,
+                "showThresholdMarkers": true
+              },
+              "pluginVersion": "7.0.5",
+              "repeat": null,
+              "targets": [
+                {
+                  "alias": "Percent",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "battery_charge_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "slimit": "",
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1h",
+              "title": "Battery Charge",
+              "type": "gauge"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 1,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "#d44a3a",
+                        "value": null
+                      },
+                      {
+                        "color": "rgba(237, 129, 40, 0.89)",
+                        "value": 10
+                      },
+                      {
+                        "color": "#299c46",
+                        "value": 30
+                      }
+                    ]
+                  },
+                  "unit": "ns"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 3,
+                "x": 14,
+                "y": 0
+              },
+              "hideTimeOverride": true,
+              "id": 6,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "background",
+                "fieldOptions": {
+                  "calcs": [
+                    "mean"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "refId": "A",
+                  "resultFormat": "table",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "time_left_ns"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1m",
+              "title": "UPS Runtime",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "watt"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 3,
+                "x": 17,
+                "y": 0
+              },
+              "hideTimeOverride": true,
+              "id": 10,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Watts",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          " / 100*$maxwatt"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now-1m",
+              "title": "Current UPS Load",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 400
+                      }
+                    ]
+                  },
+                  "unit": "kwatth"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 0
+              },
+              "hideTimeOverride": true,
+              "id": 37,
+              "interval": "1d",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "mean"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Costs",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "1d"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24*365"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now/y",
+              "title": "Estimated Yearly Usage",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 1,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 12
+                      },
+                      {
+                        "color": "green",
+                        "value": 13
+                      }
+                    ]
+                  },
+                  "unit": "volt"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 3,
+                "x": 14,
+                "y": 2
+              },
+              "hideTimeOverride": true,
+              "id": 43,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Volts",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "input_voltage"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now-1m",
+              "title": "Input Voltage",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 1,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 12
+                      },
+                      {
+                        "color": "green",
+                        "value": 13
+                      }
+                    ]
+                  },
+                  "unit": "volt"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 3,
+                "x": 17,
+                "y": 2
+              },
+              "hideTimeOverride": true,
+              "id": 45,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Volts",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "output_voltage"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now-1m",
+              "title": "Output Voltage",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "displayName": "$currency",
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 2
+              },
+              "hideTimeOverride": true,
+              "id": 36,
+              "interval": "1d",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "mean"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Costs",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24*$kwhprice*365"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now/y",
+              "title": "Estimated Yearly Cost",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 1,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 12
+                      },
+                      {
+                        "color": "green",
+                        "value": 13
+                      }
+                    ]
+                  },
+                  "unit": "volt"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 3,
+                "x": 11,
+                "y": 4
+              },
+              "hideTimeOverride": true,
+              "id": 42,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Volts",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "battery_voltage"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now-1m",
+              "title": "Battery Voltage",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 1,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 12
+                      },
+                      {
+                        "color": "green",
+                        "value": 13
+                      }
+                    ]
+                  },
+                  "unit": "hertz"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 3,
+                "x": 14,
+                "y": 4
+              },
+              "hideTimeOverride": true,
+              "id": 44,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Hz",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "input_frequency"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now-1m",
+              "title": "Input Frequency",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 1,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 12
+                      },
+                      {
+                        "color": "green",
+                        "value": 13
+                      }
+                    ]
+                  },
+                  "unit": "celsius"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 3,
+                "x": 17,
+                "y": 4
+              },
+              "hideTimeOverride": true,
+              "id": 46,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "mean"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "C",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "internal_temp"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "now-1m",
+              "title": "Internal Temp",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "kwatth"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 4
+              },
+              "hideTimeOverride": true,
+              "id": 41,
+              "interval": "1h",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "sum"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "sum"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT mean(\"load_percent\") /100*$maxwatt/1000/12 FROM \"apcupsd\" WHERE (\"ups_name\" =~ /^$upsname$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1d",
+              "timeShift": null,
+              "title": "Past Day's Usage",
+              "type": "stat"
+            },
+            {
+              "aliasColors": {
+                "APC.mean": "rgb(0, 218, 255)",
+                "UPS Load": "#70dbed"
+              },
+              "bars": false,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "$upsdatasource",
+              "decimals": null,
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {}
+                },
+                "overrides": []
+              },
+              "fill": 4,
+              "fillGradient": 0,
+              "gridPos": {
+                "h": 5,
+                "w": 11,
+                "x": 0,
+                "y": 6
+              },
+              "hiddenSeries": false,
+              "id": 48,
+              "legend": {
+                "alignAsTable": false,
+                "avg": true,
+                "current": false,
+                "hideEmpty": false,
+                "hideZero": false,
+                "max": true,
+                "min": true,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": true
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "connected",
+              "options": {
+                "dataLinks": []
+              },
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [
+                {
+                  "alias": "Watts",
+                  "yaxis": 2
+                }
+              ],
+              "spaceLength": 10,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "alias": "UPS Load",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT mean(\"load_percent\") FROM \"apcupsd\" WHERE (\"ups_name\" =~ /^$upsname$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": "1M",
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "UPS Load %",
+              "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "$$hashKey": "object:7473",
+                  "decimals": null,
+                  "format": "percent",
+                  "label": "Percent",
+                  "logBase": 1,
+                  "max": null,
+                  "min": "0",
+                  "show": true
+                },
+                {
+                  "$$hashKey": "object:7474",
+                  "format": "watt",
+                  "label": "Watts",
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": false
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            },
+            {
+              "aliasColors": {
+                "Costs": "#7eb26d",
+                "kWh": "#eab839"
+              },
+              "bars": true,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "$upsdatasource",
+              "decimals": 2,
+              "editable": true,
+              "error": false,
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {}
+                },
+                "overrides": []
+              },
+              "fill": 1,
+              "fillGradient": 0,
+              "grid": {},
+              "gridPos": {
+                "h": 5,
+                "w": 9,
+                "x": 11,
+                "y": 6
+              },
+              "hiddenSeries": false,
+              "hideTimeOverride": false,
+              "id": 33,
+              "interval": "1d",
+              "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "hideEmpty": false,
+                "hideZero": false,
+                "max": true,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": true,
+                "values": true
+              },
+              "lines": false,
+              "linewidth": 2,
+              "links": [],
+              "nullPointMode": "connected",
+              "options": {
+                "dataLinks": []
+              },
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [
+                {
+                  "$$hashKey": "object:13178",
+                  "alias": "Costs",
+                  "yaxis": 2
+                }
+              ],
+              "spaceLength": 10,
+              "span": 12,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "alias": "kWh",
+                  "dsType": "influxdb",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"value\") FROM \"power\" WHERE \"host\" = 'mainpower' AND $timeFilter GROUP BY time(1d) fill(null)",
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": "1M",
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "Power Consumption",
+              "tooltip": {
+                "msResolution": false,
+                "shared": true,
+                "sort": 0,
+                "value_type": "cumulative"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "$$hashKey": "object:9175",
+                  "decimals": null,
+                  "format": "kwatth",
+                  "label": "Consumption",
+                  "logBase": 1,
+                  "max": null,
+                  "min": "0",
+                  "show": true
+                },
+                {
+                  "$$hashKey": "object:9176",
+                  "decimals": 2,
+                  "format": "currencyUSD",
+                  "label": "Cost",
+                  "logBase": 1,
+                  "max": null,
+                  "min": "0",
+                  "show": false
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "displayName": "$currency",
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 6
+              },
+              "hideTimeOverride": true,
+              "id": 22,
+              "interval": "1h",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "sum"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "sum"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "Costs",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*$kwhprice"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1d",
+              "title": "Past Day's Cost",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "kwatth"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 8
+              },
+              "hideTimeOverride": true,
+              "id": 18,
+              "interval": "1d",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "sum"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "sum"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "kWh",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1M",
+              "timeShift": null,
+              "title": "Past Month's Usage",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "displayName": "$currency",
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 10
+              },
+              "hideTimeOverride": true,
+              "id": 26,
+              "interval": "1d",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "sum"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "sum"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24*$kwhprice"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1M",
+              "timeShift": null,
+              "title": "Past Month's Cost",
+              "type": "stat"
+            },
+            {
+              "aliasColors": {
+                "APC.mean": "rgb(0, 218, 255)",
+                "UPS Load": "#70dbed"
+              },
+              "bars": false,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "$upsdatasource",
+              "decimals": null,
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {}
+                },
+                "overrides": []
+              },
+              "fill": 4,
+              "fillGradient": 0,
+              "gridPos": {
+                "h": 5,
+                "w": 11,
+                "x": 0,
+                "y": 11
+              },
+              "hiddenSeries": false,
+              "id": 49,
+              "legend": {
+                "alignAsTable": false,
+                "avg": true,
+                "current": false,
+                "hideEmpty": false,
+                "hideZero": false,
+                "max": true,
+                "min": true,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": true
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "connected",
+              "options": {
+                "dataLinks": []
+              },
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [
+                {
+                  "alias": "Watts",
+                  "yaxis": 2
+                }
+              ],
+              "spaceLength": 10,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "alias": "UPS Load",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT mean(\"load_percent\") FROM \"apcupsd\" WHERE (\"ups_name\" =~ /^$upsname$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": "1y",
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "UPS Load %",
+              "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "$$hashKey": "object:7473",
+                  "decimals": null,
+                  "format": "percent",
+                  "label": "Percent",
+                  "logBase": 1,
+                  "max": null,
+                  "min": "0",
+                  "show": true
+                },
+                {
+                  "$$hashKey": "object:7474",
+                  "format": "watt",
+                  "label": "Watts",
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": false
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            },
+            {
+              "aliasColors": {
+                "Costs": "#7eb26d",
+                "kWh": "#eab839"
+              },
+              "bars": true,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "$upsdatasource",
+              "decimals": 2,
+              "description": "",
+              "editable": true,
+              "error": false,
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {}
+                },
+                "overrides": []
+              },
+              "fill": 1,
+              "fillGradient": 0,
+              "grid": {},
+              "gridPos": {
+                "h": 5,
+                "w": 9,
+                "x": 11,
+                "y": 11
+              },
+              "hiddenSeries": false,
+              "hideTimeOverride": false,
+              "id": 34,
+              "interval": "1d",
+              "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "hideEmpty": false,
+                "hideZero": false,
+                "max": true,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": true,
+                "values": true
+              },
+              "lines": false,
+              "linewidth": 2,
+              "links": [],
+              "nullPointMode": "connected",
+              "options": {
+                "dataLinks": []
+              },
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [
+                {
+                  "$$hashKey": "object:13536",
+                  "alias": "Costs",
+                  "yaxis": 2
+                }
+              ],
+              "spaceLength": 10,
+              "span": 12,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "alias": "kWh",
+                  "dsType": "influxdb",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"value\") FROM \"power\" WHERE \"host\" = 'mainpower' AND $timeFilter GROUP BY time(1d) fill(null)",
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": "1y",
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "Power Consumption",
+              "tooltip": {
+                "msResolution": false,
+                "shared": true,
+                "sort": 0,
+                "value_type": "cumulative"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "$$hashKey": "object:9423",
+                  "decimals": null,
+                  "format": "kwatth",
+                  "label": "Consumption",
+                  "logBase": 1,
+                  "max": null,
+                  "min": "0",
+                  "show": true
+                },
+                {
+                  "$$hashKey": "object:9424",
+                  "decimals": 2,
+                  "format": "currencyUSD",
+                  "label": "Cost",
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": false
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "kwatth"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 12
+              },
+              "hideTimeOverride": true,
+              "id": 20,
+              "interval": "1d",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "sum"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "sum"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "alias": "kWh",
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "null"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1y",
+              "title": "Past Year's Usage",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "$upsdatasource",
+              "description": "",
+              "fieldConfig": {
+                "defaults": {
+                  "custom": {},
+                  "decimals": 2,
+                  "displayName": "$currency",
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "nullValueMode": "connected",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 2,
+                "w": 4,
+                "x": 20,
+                "y": 14
+              },
+              "hideTimeOverride": true,
+              "id": 28,
+              "interval": "1d",
+              "links": [],
+              "options": {
+                "colorMode": "value",
+                "fieldOptions": {
+                  "calcs": [
+                    "sum"
+                  ]
+                },
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "sum"
+                  ],
+                  "fields": "",
+                  "values": false
+                }
+              },
+              "pluginVersion": "7.0.5",
+              "targets": [
+                {
+                  "groupBy": [
+                    {
+                      "params": [
+                        "$__interval"
+                      ],
+                      "type": "time"
+                    },
+                    {
+                      "params": [
+                        "none"
+                      ],
+                      "type": "fill"
+                    }
+                  ],
+                  "hide": false,
+                  "measurement": "apcupsd",
+                  "orderByTime": "ASC",
+                  "policy": "default",
+                  "query": "SELECT sum(\"load_percent\") / 100 * 865 FROM \"APC\" WHERE \"load_percent\" = 'loadpercent' AND $timeFilter GROUP BY time(30s) fill(null)",
+                  "rawQuery": false,
+                  "refId": "A",
+                  "resultFormat": "time_series",
+                  "select": [
+                    [
+                      {
+                        "params": [
+                          "load_percent"
+                        ],
+                        "type": "field"
+                      },
+                      {
+                        "params": [],
+                        "type": "mean"
+                      },
+                      {
+                        "params": [
+                          "/100*$maxwatt/1000*24*$kwhprice"
+                        ],
+                        "type": "math"
+                      }
+                    ]
+                  ],
+                  "tags": [
+                    {
+                      "key": "ups_name",
+                      "operator": "=~",
+                      "value": "/^$upsname$/"
+                    }
+                  ]
+                }
+              ],
+              "timeFrom": "1y",
+              "timeShift": null,
+              "title": "Past Year's Cost",
+              "type": "stat"
+            }
+          ],
+          "refresh": "1m",
+          "schemaVersion": 25,
+          "style": "dark",
+          "tags": [
+            "telegraf",
+            "apcupsd"
+          ],
+          "templating": {
+            "list": [
+              {
+                "current": {
+                  "selected": false,
+                  "text": "InfluxDB",
+                  "value": "InfluxDB"
+                },
+                "hide": 0,
+                "includeAll": false,
+                "label": "UPS Datasource",
+                "multi": false,
+                "name": "upsdatasource",
+                "options": [],
+                "query": "influxdb",
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "type": "datasource"
+              },
+              {
+                "allValue": null,
+                "current": {},
+                "datasource": "$upsdatasource",
+                "definition": "SHOW TAG VALUES FROM apcupsd WITH KEY=ups_name",
+                "hide": 0,
+                "includeAll": false,
+                "label": "UPS Name",
+                "multi": false,
+                "name": "upsname",
+                "options": [],
+                "query": "SHOW TAG VALUES FROM apcupsd WITH KEY=ups_name",
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+              },
+              {
+                "allValue": null,
+                "current": {},
+                "datasource": "$upsdatasource",
+                "definition": "SHOW TAG VALUES FROM apcupsd WITH KEY=model WHERE ups_name =~ /^$upsname$/",
+                "hide": 0,
+                "includeAll": false,
+                "label": "UPS Max Output Power Capacity (Watt)",
+                "multi": false,
+                "name": "maxwatt",
+                "options": [],
+                "query": "SHOW TAG VALUES FROM apcupsd WITH KEY=model WHERE ups_name =~ /^$upsname$/",
+                "refresh": 1,
+                "regex": "/.*(\\d{3,4})/",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+              },
+              {
+                "current": {
+                  "selected": true,
+                  "text": ".15",
+                  "value": ".15"
+                },
+                "hide": 0,
+                "label": "kWh Price",
+                "name": "kwhprice",
+                "options": [
+                  {
+                    "selected": true,
+                    "text": ".15",
+                    "value": ".15"
+                  }
+                ],
+                "query": ".15",
+                "skipUrlSync": false,
+                "type": "textbox"
+              },
+              {
+                "allValue": null,
+                "current": {
+                  "selected": true,
+                  "text": "$",
+                  "value": "$"
+                },
+                "hide": 0,
+                "includeAll": false,
+                "label": "Currency",
+                "multi": false,
+                "name": "currency",
+                "options": [
+                  {
+                    "selected": true,
+                    "text": "$",
+                    "value": "$"
+                  },
+                  {
+                    "selected": false,
+                    "text": "€",
+                    "value": "€"
+                  },
+                  {
+                    "selected": false,
+                    "text": "£",
+                    "value": "£"
+                  },
+                  {
+                    "selected": false,
+                    "text": "C$",
+                    "value": "C$"
+                  },
+                  {
+                    "selected": false,
+                    "text": "kr",
+                    "value": "kr"
+                  },
+                  {
+                    "selected": false,
+                    "text": "₽",
+                    "value": "₽"
+                  },
+                  {
+                    "selected": false,
+                    "text": "¥",
+                    "value": "¥"
+                  },
+                  {
+                    "selected": false,
+                    "text": "R",
+                    "value": "R"
+                  }
+                ],
+                "query": "$,€,£,C$,kr,₽,¥,R",
+                "queryValue": "",
+                "skipUrlSync": false,
+                "type": "custom"
+              }
+            ]
+          },
+          "time": {
+            "from": "now-1M/M",
+            "to": "now-1M/M"
+          },
+          "timepicker": {
+            "hidden": true,
+            "refresh_intervals": [
+              "1m"
+            ],
+            "time_options": [
+              "5m",
+              "15m",
+              "1h",
+              "6h",
+              "12h",
+              "24h",
+              "2d",
+              "7d",
+              "30d"
+            ]
+          },
+          "timezone": "browser",
+          "title": "APC UPS Dashboard",
+          "uid": "FBsdas",
+          "version": 21
+        }
