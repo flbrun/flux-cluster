@@ -6,4 +6,5 @@ resources:
   - route.yaml
   - grafana-oidc-secret.yaml
   - influx-password-secret.yaml
+  - influx-v2-token-secret.yaml
   - dashboards
