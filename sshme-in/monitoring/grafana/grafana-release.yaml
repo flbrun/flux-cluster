@@ -69,7 +69,7 @@ spec:
               defaultBucket: "default"
               timeInterval: "10s"
             secureJsonData:
-              password: $__file{/etc/grafana-secrets/influx-token}
+              token: $__file{/etc/grafana-secrets/influx-token}
     sidecar:
       dashboards:
         enabled: true
