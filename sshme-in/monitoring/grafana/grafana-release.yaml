@@ -21,7 +21,7 @@ spec:
         readOnly: true
       - name: influx-token
         secretName: influx-v2-token-secret
-        mountPath: /etc/grafana-secrets
+        mountPath: /etc/influx-secrets
         readOnly: true
     envFromSecret: grafana-oidc-secret
     grafana.ini:
@@ -69,7 +69,7 @@ spec:
               defaultBucket: "default"
               timeInterval: "10s"
             secureJsonData:
-              token: $__file{/etc/grafana-secrets/influx-token}
+              token: $__file{/etc/influx-secrets/influx-token}
     sidecar:
       dashboards:
         enabled: true
