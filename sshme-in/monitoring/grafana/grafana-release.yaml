@@ -67,7 +67,6 @@ spec:
               version: Flux
               organization: "influxdata"
               defaultBucket: "default"
-              tlsSkipVerify: false
               timeInterval: "10s"
             secureJsonData:
               password: $__file{/etc/grafana-secrets/influx-token}
