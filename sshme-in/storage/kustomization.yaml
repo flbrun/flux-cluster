@@ -6,4 +6,5 @@ resources:
   - auth-policy.yaml
   - redis
   - influxdb
+  - influxv2
   
