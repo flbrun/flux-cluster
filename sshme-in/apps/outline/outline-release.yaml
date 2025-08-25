@@ -17,7 +17,7 @@ spec:
       tag: 0.86.0
     url: "https://outline.sshme.in"
     externalPostgresql:
-      host: "storage.sshme.in"
+      host: "10.10.10.3"
       username: "outline_editor"
       existingSecret: "postgres-outline-password"
     externalRedis:
@@ -30,7 +30,7 @@ spec:
       s3:
         existingSecret: "minio-outline"
         bucket: "outline"
-        bucketUrl: "https://storage.sshme.in:9000"
+        bucketUrl: "https://10.10.10.3:9000"
 
     extraEnvVars:
       OIDC_CLIENT_ID: "outline"
