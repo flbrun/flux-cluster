@@ -15,3 +15,7 @@ spec:
   values:
     postgresql:
       enabled: false
+    externalDatabase:
+      username: "hedgedoc"
+      password: "passwort"
+      host: "10.10.10.3"
