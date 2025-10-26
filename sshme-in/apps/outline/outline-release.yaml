@@ -7,14 +7,12 @@ spec:
   chart:
     spec:
       chart: outline
-      version: 0.6.0
+      version: 0.7.0
       sourceRef:
         kind: HelmRepository
         name: community-charts
         namespace: flux-system
   values:
-    image:
-      tag: 0.86.0
     url: "https://outline.sshme.in"
     externalPostgresql:
       host: "10.10.10.3"
