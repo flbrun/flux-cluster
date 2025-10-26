@@ -12,3 +12,6 @@ spec:
         kind: HelmRepository
         name: adfinis
         namespace: flux-system
+  values:
+    postgresql:
+      enabled: false
