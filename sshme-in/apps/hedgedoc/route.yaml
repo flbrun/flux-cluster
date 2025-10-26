@@ -1,27 +1,27 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: actual-route
+  name: doc-route
   annotations:
-    gethomepage.dev/href: "https://budget.sshme.in"
+    gethomepage.dev/href: "https://doc.sshme.in"
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/description: Finance App
+    gethomepage.dev/description: Note taking Tool
     gethomepage.dev/group: Apps
-    gethomepage.dev/icon: https://artifacthub.io/image/33d0bf63-15b0-462a-8d6f-ce7f282bb147@2x
-    gethomepage.dev/app: actual-route
-    gethomepage.dev/name: Actual
+    gethomepage.dev/icon: https://www.getdoc.com/images/logo.svg
+    gethomepage.dev/app: doc-route
+    gethomepage.dev/name: doc
     gethomepage.dev/pod-selector: ""
 spec:
   parentRefs:
   - name: default-gateway
     namespace: istio-ingress
   hostnames:
-  - "budget.sshme.in"
+  - "doc.sshme.in"
   rules:
   - matches:
     - path:
         type: PathPrefix
         value: /
     backendRefs:
-    - name: actual-actualbudget
-      port: 5006
+    - name: hedgedoc
+      port: 3000

@@ -15,4 +15,5 @@ resources:
   #- fairwinds.yaml
   - kiali.yaml
   - influx.yaml
+  - adfinis.yaml
   
