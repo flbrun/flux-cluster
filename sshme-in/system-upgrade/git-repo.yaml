@@ -6,4 +6,4 @@ spec:
   interval: 1h
   url: https://github.com/rancher/system-upgrade-controller
   ref:
-    tag: v0.15.2
+    tag: v0.17.0
