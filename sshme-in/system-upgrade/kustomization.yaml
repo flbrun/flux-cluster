@@ -5,3 +5,4 @@ resources:
   - git-repo.yaml
   - namespace.yaml
   - plan.yaml
+  - controller.yaml
